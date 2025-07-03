@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float</title>
+    <style>
+        div {
+            width: 150px;
+            height: 150px;
+            background-color: violet;
+            border: 1px solid black;
+        }
+
+        div.item {
+            float: left;
+            margin-left: 10px;
+        }
+
+        /* one이 float되었기 때문에 two는 one에 영향을 받아 밑에 깔림. 
+           content(글씨)는 깔리지 않음 (두고 간다!) */
+        /* div.one {
+            float: left;
+            margin-left: 10px;
+        } */
+        /* div.two {
+            background-color: yellow;
+            color: red;
+        } */
+
+        div.three {
+            clear: left;
+            float: right;
+        }
+
+        p {
+            clear: both;
+            /* 위의 요소들에 적용된 float에 따라가지 않도록 함 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>Float</h2>
+    <p>
+        float 속성은 block 요소에 적용을 시켜 각 요소를 하나의 층으로 만들어서 배치<br>
+        어떤 요소에 float을 적용하면 그 아래에 배치된 다른 요소들에도 영향을 미친다.
+    </p>
+    <div class="item one">하나</div>
+    <div class="item two">둘</div>
+    <div class="item three">셋</div>
+    <div class="item four">넷</div>
+    <div class="item five">다섯</div>
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Fuga mollitia, blanditiis quidem sint nulla amet rem officiis architecto
+        magnam modi eligendi quas exercitationem reprehenderit dolores quo eos.
+        Explicabo, rerum atque.
+    </p>
+</body>
+
+</html>

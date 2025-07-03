@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>회원가입 화면</title>
+	<script>
+		window.addEventListener('load', initial);
+
+		function initial() {
+			let btn = document.getElementById("btn");
+			btn.addEventListener('click', function () {
+				let userid = document.getElementById("userid");
+				if (userid.value.trim().length < 3 || userid.value.trim().length > 5) {
+					alert("아이디는 3~5자로 입력하세요");
+					userid.select();
+					return;
+				}
+
+				let username = document.getElementById("username");
+				if (username.value.trim().length < 1) {
+					alert("이름을 입력해주세요");
+					username.select();
+					return;
+				}
+
+				let phone = document.getElementById("phone");
+				if (isNaN(phone.value) || phone.value.trim().length != 11) {
+					alert("전화번호는 -를 포함하지 않은 숫자로 입력해주세요")
+					phone.select();
+					return;
+				}
+				// 서버로 데이터 전송
+				document.getElementById("joinForm").submit();
+			});
+		}
+	</script>
+</head>
+
+<body>
+	<h2>회원가입</h2>
+	<form id="joinForm" action="/join" method="post">
+		<label>
+			아이디: <input type="text" id="userid" name="userid">
+		</label><br>
+		<label>
+			이 름: <input type="text" id="username" name="username">
+		</label><br>
+		<label>
+			전화번호: <input type="text" id="phone" name="phone">
+		</label><br>
+		<label>
+			이메일: <input type="email" id="email" name="email" required>
+		</label><br>
+		<label>
+			생년월일: <input type="date" id="birthday" name="birthday">
+		</label><br>
+		<input id="btn" type="button" value="회원가입">
+		<input type="reset" value="초기화">
+	</form>
+</body>
+
+</html>

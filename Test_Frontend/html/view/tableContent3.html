@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[연습] 셀 합치기 연습</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            border: 2px solid #333;
+            border-collapse: collapse;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        table thead {
+            background-color: #cadeca;
+        }
+
+        table caption {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: darksalmon;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #eee;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>월요일</th>
+                <th>화요일</th>
+                <th>수요일</th>
+                <th>목요일</th>
+            </tr>
+        </thead>
+        <tbody> <!-- ((th+td*4)*4) -->
+            <caption>시간표</caption>
+            <tr>
+                <th>1교시</th>
+                <td colspan="2">국어</td>
+                <td rowspan="4">컴퓨터</td>
+                <td>CA</td>
+            </tr>
+            <tr>
+                <th>2교시</th>
+                <td rowspan="3">수학</td>
+                <td rowspan="2">영어</td>
+                <td rowspan="3">과학</td>
+            </tr>
+            <tr>
+                <th>3교시</th>
+            </tr>
+            <tr>
+                <th>4교시</th>
+                <td>과학</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

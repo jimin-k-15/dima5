@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 사용 위치</title>
+    <script>
+        let elem1 = document.getElementById("title");
+        window.alert(elem); // 데이터가 아래에 있기 때문에 가져올 수 없음. 'null'이 뜸 
+        // window.alert만 실행 시 프로그램이 멈춤. DOM이 완성될 때까지 유예!
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2 id="title">자바스크립트 사용법</h2>
+    <script>
+        let elem2 = document.getElementById("title");
+        window.alert(elem2);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="./css/formExam.css">
+</head>
+
+<body>
+    <div class="header">
+        <h2>회원가입_회원정보 입력</h2>
+        <div>
+            홈 &gt; 회원 &gt; 회원가입
+        </div>
+        <div>회원정보 입력</div>
+        <p>
+            <span class="important">*</span>
+            표시된 항목은 <span class="important">필수입력</span> 항목입니다.
+        </p>
+    </div>
+    <form action="">
+        <table>
+            <tbody>
+                <tr>
+                    <th>이름</th>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <th><span class="important">*</span> 아이디</th>
+                    <td>
+                        <input type="text">
+                        <button>중복확인</button><br>
+                        <span>영문소문자, 숫자 5 ~ 12자</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="important">*</span> 비밀번호</th>
+                    <td>
+                        <input type="password">
+                        <span>영문, 숫자, 특수문자 중 2가지 이상 혼합하여 10~15자로 입력하세요.<br>
+                            ※ 특수문자는 "~@#*()...|만 사용가능합니다.</span>
+                    </td>
+                </tr>
+            </tbody>
+            <tr>
+                <th><span class="important">*</span> 비밀번호 확인</th>
+                <td>
+                    <input type="password">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="important">*</span> 연락처</th>
+                <td>
+                    <span>※ 유선전화와 휴대 전화중 한 가지는 입력하여 주시기 바랍니다.</span><br>
+                    <label for="">전화번호</label>
+                    <select name="" id="">
+                        <option value="">02</option>
+                        <option value="">031</option>
+                        <option value="">032</option>
+                        <option value="">051</option>
+                    </select> -
+                    <input type="text"> -
+                    <input type="text">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="important">*</span> 이메일</th>
+                <td>
+                    <input type="text"> @
+                    <select name="" id="">
+                        <option value="">직접입력</option>
+                        <option value="">naver.com</option>
+                        <option value="">daum.net</option>
+                        <option value="">gmail.com</option>
+                    </select>
+                    <input type="text">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="important">*</span> 주소</th>
+                <td>
+                    <select name="" id="">
+                        <option value="">선택</option>
+                        <option value="">강남구</option>
+                        <option value="">송파구</option>
+                        <option value="">동작구</option>
+                        <option value="">강서구</option>
+                        <option value="">서초구</option>
+                    </select>
+                    <input type="text">
+                </td>
+            </tr>
+            <tr>
+                <th><span class="important">*</span> 정보수신 동의</th>
+                <td>
+                    <label for="">이메일 수신</label>
+                    <input type="radio" name="receive">예
+                    <input type="radio" name="receive">아니오
+                    <hr>
+                    <label for="">카카오톡 수신</label>
+                    <input type="checkbox" name="kakaotalk">카카오톡 맞춤정보 사용 동의
+                </td>
+            </tr>
+        </table>
+
+        <div class="buttons">
+            <input type="submit" value="가입하기"> &nbsp;
+            <input type="reset" value="취소">
+        </div>
+    </form>
+</body>
+
+</html>

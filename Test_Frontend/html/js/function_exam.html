@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 함수 연습</title>
+    <style>
+        div.box {
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            position: absolute;
+            top: 300px;
+        }
+    </style>
+    <script>
+        // ** 자바스크립트에서 문서(document)에 접근해서 요소 정보를 얻어오려면 
+        // 전체 문서가 메모리에 로드가 완료되어야 한다! ** 
+        window.addEventListener('load', function () {
+            let target = document.getElementById('target');
+            let draw = document.getElementById("draw");
+            let stop = document.getElementById("stop");
+            let clear = document.getElementById("clear"); /* 콜백 함수들 */
+
+            // ======= setInterval() 함수의 사용
+            let timer;
+
+            draw.addEventListener('click', () => timer = setInterval(() => { target.innerHTML += "★"; }, 500));
+            stop.addEventListener('click', () => clearInterval(timer));
+            clear.addEventListener('click', () => target.innerHTML = "");
+
+            // -------------- box 조절하기
+            let boxes = document.getElementsByClassName('box'); // 배열로 반환
+            let firstBox = boxes[0];
+            let secondBox = boxes[1];
+
+            setInterval(() => {
+                // 1) 첫번째 상자의 위치를 임의로 움직이도록 
+                let leftP = Math.floor(Math.random() * 1000);
+                let topP = Math.floor(Math.random() * 500);
+
+                // console.log(`${leftP}, ${topP}`);
+
+                // 자바스크립트에서 요소의 style에 접근합시다.
+                firstBox.style.top = topP + 'px';
+                firstBox.style.left = leftP + 'px';
+                // 2) RGB색상을 임의로 발생시킨 후 배경색을 바꾸는 작업
+                let red = Math.floor(Math.random() * 256)
+                let green = Math.floor(Math.random() * 256)
+                let blue = Math.floor(Math.random() * 256)
+
+                console.log(red + ", " + green + ", " + blue)
+                secondBox.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`; // 백틱과 ${} 써야 함!
+            }, 500);
+        });
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>자바스크립트 함수 연습</h2>
+    <p>
+        <input id="draw" type="button" value="그려!"> &nbsp;
+        <input id="stop" type="button" value="멈춰!"> &nbsp;
+        <input id="clear" type="button" value="지워!">
+    </p>
+    <h2 id="target"></h2>
+    <br><br>
+    <hr>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+</body>
+
+</html>

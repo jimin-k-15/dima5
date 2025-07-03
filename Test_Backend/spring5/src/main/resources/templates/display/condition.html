@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>반복문과 조건문</title>
+</head>
+<body>
+	<div th:insert="~{fragment/header(title='[ Thymeleaf 반복문과 조건문 ]')}"></div>
+	
+	<h3>1. List에 저장된 문자열을 반복 출력</h3>
+	<p>과일 개수: [[ ${fruit.size()}]]</p>
+	<p>과일 무조건 출력: [[ ${fruit}]]</p>
+	<ul>
+		<li th:each="item : ${fruit}">
+			<span th:text="${item}">과일이름</span>
+		</li>
+	</ul>
+	
+	<h3>2. List에 저장된 숫자를 반복 출력</h3>
+	<ul>
+		<li th:each="num, status : ${number}">
+			<span th:text="${status.index}"></span> =  
+			<span th:text="${status.count}"></span> :
+			<span th:if="${status.count} % 3 == 0" style="color:red" th:text="${num}"></span>
+			<span th:unless="${status.count} % 3 == 0" th:text="${num}"></span>
+		</li>
+	</ul>
+</body>
+</html>

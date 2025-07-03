@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 문자출력</title>
+</head>
+<body>
+	<div th:insert="~{fragment/header(title='[ Thymeleaf 기본데이터 출력 ]')}"></div>
+	<ul>
+		<li>한글: <span th:text="${korean}">한글이 출력되는 위치</span></li>
+		<li>영문: <span th:text="${english}">영문이 출력되는 위치</span></li>
+		<li>tag1: <span th:utext="${tag1}">tag1이 출력되는 위치</span></li>
+		<li>tag2: <span th:utext="${tag2}">tag2가 출력되는 위치</span></li>
+		<li>링크: <a th:href="${url}">네이버로 이동</a></li>
+		<li>빈 문자열: <span th:text="${emptyData}">빈문자열 출력되는 위치</span></li>
+		<li>정수: <span th:text="${age}">age가 출력되는 위치</span></li>
+		<li>실수: <span th:text="${pi}">pi가 출력되는 위치</span></li>
+		<li>부울: <span th:text="${bool}">bool이 출력되는 위치</span></li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록 콘텐츠</title>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>목록 콘텐츠를 나타내는 태그</h2>
+    <p>순서목록, 기호목록, 정의목록 등 3가지</p>
+    <hr>
+    <h3>ul, li - unordered list, list</h3>
+    <ul>
+        <li>일</li>
+        <li>이</li>
+        <li>삼</li>
+    </ul>
+    <hr>
+
+    <h3>ol, li - ordered list, list</h3>
+    <ol type="I"> <!-- I, i: 로마숫자로, a, A: 영문자로, 1: 숫자(default)-->
+        <li>일</li>
+        <li>이</li>
+        <li>삼</li>
+    </ol>
+
+    <hr>
+    <h3>중첩태그</h3>
+    <ul>
+        <li>항목1
+            <ul type="square"> <!-- circle, square, -->
+                <li>일</li>
+                <li>이</li>
+                <li>삼</li>
+                <li>사</li>
+                <li>오</li>
+            </ul>
+        </li>
+        <hr>
+        <h3>정의 목록 태그</h3>
+        <p>dl(definition list), dt(definition term), dd(definition descript)</p>
+        <dl>
+            <dt>CSS 제목</dt>
+            <dd>CSS는 Cascading Style Sheet이며 화면을 꾸밀 때 사용</dd>
+        </dl>
+
+    </ul>
+</body>
+
+</html>

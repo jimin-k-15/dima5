@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 함수(1)</title>
+    <style>
+        pre {
+            font-size: 1.3em;
+            font-family: D2Coding serif;
+        }
+    </style>
+    <script>
+        // 첫번째 함수
+        function plus(a, b) {
+            return a + b;
+        }
+
+        // 두번째 함수: 함수의 이름은 포인터의 역할을 담당한다.
+        function minus(a, b) {
+            return a - b;
+        }
+        function proxy(func, a, b) {
+            return func(a, b)
+        }
+
+        let data = proxy(plus, 10, 5)
+        console.log(`proxy를 plus로 호출한 결과 : ${data}`);
+
+        data = proxy(minus, 10, 5)
+        console.log(`proxy를 minus로 호출한 결과 : ${data}`);
+
+        // 함수의 이름을 데이터로 사용하여 치환
+        let temp = minus;
+        temp(10, 8);    // === minus(10,8);
+
+        // 함수 내부에 생성되는 배열 arguments(RO)?
+        function ff(a, b) {
+            console.log(`a의 값 ${a}. b의 값 ${b}`)
+            console.log(`아규먼트 확인하기! ${arguments.length} `)
+        }
+        ff(10, 20);
+        ff(10, 20, 30);
+
+        // ----------- 가변인자 배열 ...
+        console.log('==========================')
+        function tempF(...args) {
+            console.log('아규먼트 개수: ' + arguments.length); // 호출하는 쪽에서 몇 개 보냈는지 알 수 있는 속성
+            // arguments[0] = 33; // 가능하지만 사용하지 말 것
+            for (let item of arguments)
+                console.log(item);
+        }
+        tempF();
+        tempF(22);
+        tempF(22, 45, 1, 45, 4, 8, 23);
+
+        // (문제-1) 아래 주어진 함수를 화살표 함수로 변경하시오. 
+        let one = function (x, y) {
+            return x * y;
+        }
+        one = (x, y) => x * y;
+
+        // (문제-2) 전달인자가 1개인 함수를 화살표 함수로 바꾸시오.
+        let two = function (x) {
+            return x ** 3;
+        }
+        two = x => x ** 3;
+
+        // (문제-3) 첫번째 전달인자를 화살표 함수로 바꾸시오.
+        // setInterval(function () { console.log('★') }, 1000);
+        // setInterval(() => console.log('★'), 1000);
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>자바스크립트 함수(1)</h2>
+    <p style="color:red;">※ 실행결과는 콘솔창으로 보시오!</p>
+    <pre>
+        ※ 함수의 정의 : 반복되는 코드를 하나로 묶어서 사용하는 단위코드
+        (1) 선언 함수: 함수 hoisting이 일어남
+        function 함수명([파라미터 선언부]) {
+            실행문;
+            [return 데이터];
+        }
+
+        (2) 표현 함수: 하나의 값으로 처리하기 때문에 변수에 대입하여 사용. 익명함수
+            표현 함수에서는 함수가 리터럴로 처리됨
+        let 변수명 = function ([파라미터 선언부]) {
+            실행문;
+            [return 데이터];
+        }
+
+        (3) 화살표 함수: 다른 언어에서는 람다함수. 함수 리터럴을 다른 방식으로 처리
+        - 함수를 화살표 함수로 바꾸는 방법
+            1. function 키워드를 지운다.
+            2. ) { 사이에 -=> 를 넣는다. 
+            3. 함수의 Body 부분에 실행문이 하나일 경우 {} 생략.
+            4. return 키워드를 지운다. 
+            5. 매개변수가 1개일 때는 ()를 생략할 수 있다. 
+                매개변수가 0개일 때는 ()를 생략할 수 없다. 
+            
+    </pre>
+    <hr>
+
+    <p>
+        <input id="draw" type="button" value="그려!"> &nbsp;
+        <input id="stop" type="button" value="멈춰!"> &nbsp;
+        <input id="clear" type="button" value="지워!">
+    </p>
+    <h2 id="target"></h2>
+
+    <script>
+        let target = document.getElementById('target');
+        let draw = document.getElementById("draw");
+        let stop = document.getElementById("stop");
+        let clear = document.getElementById("clear");
+
+        // ======= setInterval() 함수의 사용
+        let timer;
+
+        draw.addEventListener('click', () => timer = setInterval(() => { target.innerHTML += "★"; }, 500));
+        stop.addEventListener('click', () => clearInterval(timer));
+        clear.addEventListener('click', () => target.innerHTML = "");
+
+
+    </script>
+</body>
+
+</html>

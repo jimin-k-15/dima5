@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>색상테스트</title>
+    <style>
+        div>span {
+            font-size: 2em;
+            font-weight: bold;
+            /* 알파값은 0~1 사이의 소수점. 0에 가까울수록 투명, 1에 가까울수록 불투명 */
+            /* 1) 수평위치, 수직위치, 퍼짐정도, 그림자 색상 */
+            text-shadow: -5px -5px 2px rgba(255, 0, 0, 0.8);
+        }
+
+        div.box {
+            width: 150px;
+            height: 150px;
+            border: 1px solid lightcoral;
+            box-shadow: 10px 10px 8px rgb(250, 210, 100);
+            margin: 10px;
+            /*
+                margin : a       ==> 상하좌우 마진이 모두 a로 동일
+                margin : a b     ==> 상하 a, 좌우 b의 마진값을 갖는다.
+                margin : a b c   ==> 상하 a, 좌 b, 우 c의 마진값을 갖는다. 
+                margin : a b c d ==> 상 a, 우 b, 하 c, 좌 d의 마진값을 갖는다. (시계방향)
+            */
+        }
+
+        div.item1 {
+            background-color: yellowgreen;
+        }
+
+        div.item2 {
+            background-color: rgba(200, 150, 230, 0.7);
+        }
+
+        div.item3 {
+            background-color: #ff6789;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="./color.html">
+            앞으로
+        </a>
+    </h3>
+    <h2>컬러(rgba)테스트</h2>
+    <div>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JAVASCRIPT</span>
+    </div><br><br>
+    <div class="box item1"></div>
+    <div class="box item2"></div>
+    <div class="box item3"></div>
+</body>
+
+</html>

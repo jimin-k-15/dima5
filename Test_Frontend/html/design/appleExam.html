@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(예제) 가정용 꿀사과 화면 만들기</title>
+    <style>
+        /* 홈으로 */
+        h3.home {
+            width: 530px;
+            margin: 0 auto;
+        }
+
+        div.container,
+        div.container div {
+            border: 1px solid lightgray;
+        }
+
+        div.container {
+            width: 530px;
+            padding: 5px;
+            margin: 0 auto;
+        }
+
+        div.title {
+            height: 128px;
+            padding-top: 198px;
+            background-image: url(./images/apple.png);
+            background-position: 80% 80%;
+        }
+
+        div.title>div {
+            background-color: rgba(250, 200, 250, 0.7);
+        }
+
+        div.title>div>h3 {
+            font-size: 1.2em;
+            color: blue;
+        }
+
+        div.title>div>h3+p {
+            color: rgb(95, 95, 50);
+        }
+
+        /* 확인하세요 부분 */
+        div.delivery>div {
+            color: white;
+            background-color: black;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px;
+            border: 0px;
+            text-align: left;
+        }
+
+        /* 타이틀 부분 */
+        div.delivery>h2,
+        div.exchange>h2,
+        div.customer>h2 {
+            color: red;
+            font-size: 1em;
+        }
+
+        div.delivery>*,
+        div.exchange>*,
+        div.customer>* {
+            text-align: center;
+        }
+
+        /* 강조하는 부분 */
+        span.strong {
+            color: blue;
+            font-size: 1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h3>
+    <div class="container"> <!-- 전체 영역 포함 -->
+        <div class="title">
+            <div>
+                <h3>가정용 꿀사과</h3>
+                <p>
+                    흠집이 있고 약간은 못생겼지만 맛과 영양은 그대로입니다. <br>
+                    질좋은 사과를 합리적 가격에 즐겨보세요!
+                </p>
+            </div>
+        </div>
+        <div class="delivery">
+            <div>확인하세요.</div>
+            <h2>주문 및 배송</h2>
+            <p>
+                <span class="strong">오후 2시</span> 이전 주문건은 당일 발송합니다. <br>
+                2시 이후 주문건은 익일 발송합니다. (주말 제외)
+            </p>
+        </div> <!-- 확인하세요 영역 -->
+        <div class="exchange">
+            <h2>교환 및 환불</h2>
+            <p>
+                불만족시 <span class="strong">100% 환불</span> 해 드립니다. <br>
+                고객센터로 전화 주세요.
+            </p>
+        </div> <!-- 교환 영역 -->
+        <div class="customer">
+            <h2>고객센터</h2>
+            <p> 2052-3598 </p>
+            <p>
+                상담시간 : 오전 9시 ~ 오후 6시 (토/일, 공휴일 휴무)
+            </p>
+        </div> <!-- 고객센터 영역 -->
+    </div>
+</body>
+
+</html>

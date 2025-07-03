@@ -1,0 +1,9 @@
+SELECT version();
+SHOW DATABASES;
+
+CREATE DATABASE jdbc;
+
+INSERT INTO test1 VALUES ('강감찬', 35);
+USE jdbc;
+COMMIT;
+SELECT * FROM test1;

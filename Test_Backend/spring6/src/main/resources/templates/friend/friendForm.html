@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring6</title>
+</head>
+
+<body>
+    <h2>친구정보 입력</h2>
+    <form action="/regist" method="post">
+        <label for="fname">이름: </label>
+        <input type="text" name="name" id="fname"><br>
+        <label for="fage">나이: </label>
+        <input type="number" name="age" id="fage" value="25"><br>
+        <label for="fphone">전화번호: </label>
+        <input type="text" name="phone" id="fphone"><br>
+        <label for="fbirthday">생일: </label>
+        <input type="date" name="birthday" id="fbirthday"><br>
+        <label>성향:
+            <input type="radio" name="active" value="1" checked>외향적
+            <input type="radio" name="active" value="0">내향적
+        </label><br>
+        <input type="submit" value="친구등록">
+    </form>
+</body>
+
+</html>

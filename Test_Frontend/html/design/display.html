@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <style>
+        div>img {
+            margin: 10px;
+            border: 1px dotted lightcoral;
+        }
+
+        div>img.second {
+            display: none;
+            /* 렌더링 자체를 하지 않음 */
+        }
+
+        div>img.third {
+            visibility: hidden;
+            /* 렌더링은 하지만 화면에 보이지 않도록 함. 자리를 차지하고 있음 */
+        }
+
+        div>a {
+            background-color: yellowgreen;
+            display: inline-block;
+            width: 200px;
+            height: 70px;
+            text-align: center;
+            /* vertical-align: bottom; */
+            /* 일반적인 위치는 수직정렬 안 됨 --> flex를 사용하면 됨 */
+        }
+
+        /* 원 만들기 */
+        div.circle>div {
+            width: 200px;
+            height: 200px;
+            border: 2px solid red;
+            background-image: url(./images/strawberrycake.jpg);
+            background-size: cover;
+            border-radius: 100px;
+        }
+
+        /* 검색창 만들기 */
+        div.mysearch {
+            width: 500px;
+            height: 50px;
+            border: 1px solid gray;
+            border-radius: 25px;
+            box-shadow: 0 0 10px lightgray;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        div#icon {
+            background-image: url(./images/searchicon.png);
+        }
+
+        div#mic {
+            background-image: url(./images/microphone.png);
+        }
+
+        div#lens {
+            background-image: url(./images/magnifier.png);
+        }
+
+        div#icon,
+        div#mic,
+        div#lens {
+            width: 30px;
+            height: 30px;
+            background-size: cover;
+        }
+
+        /* 입력상자 */
+        input#search {
+            display: inline-block;
+            width: 300px;
+            height: 30px;
+            border: 0px;
+        }
+
+        input#search:focus {
+            background-color: azure;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h3>
+    <h2>Display</h2>
+    <p>
+        display 속성은 각 요소가 화면에 어떤 형태로 출력될 것인지 제어하는 방법<br>
+        태그가 가진 원래의 display 속성(inline, block)이 있다. <br>
+        block, inline, inline-block, flex, grid 등의 값으로 제어 가능<br>
+        inline : 현재 요소가 다른 요소와 함께 폭을 나눠 사용. <br>
+        block : 가로의 폭을 요소 혼자 다 사용. width, height를 이용해서 폭을 조정할 수 있다.
+    </p>
+    <div><img src="./images/face1.png" alt="">
+        <img src="./images/face2.png" alt="" class="second">
+        <img src="./images/face3.png" alt="" class="third">
+        <img src="./images/face4.png" alt="">
+    </div>
+    <div>
+        <a href="#">이동하기1</a>
+        <a href="#">이동하기2</a>
+    </div> <br>
+    <!-- 원 만들기 -->
+    <div class="circle">
+        <div></div>
+    </div>
+
+    <div>
+        <h3>검색창 만들기</h3>
+        <div class="mysearch">
+            <div id="icon"></div>
+            <input id="search" type="text" placeholder="검색 입력">
+            <div id="mic"></div>
+            <div id="lens"></div>
+        </div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br> 마이크, 돋보기, 서치아이콘 3개
+</body>
+
+</html>

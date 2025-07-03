@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종속 선택자 연습</title>
+    <style>
+        /* 특이값: 1 + 100 + 1 = 102 */
+        div#container span {
+            color: orange;
+            font-weight: bolder;
+        }
+
+        /* 특이값: 1 + 100 + 1 + 100 + 1 = 203 */
+        div#container>p#first+p {
+            text-decoration: underline;
+        }
+
+        div#container ul>li#item {
+            background-color: cadetblue;
+        }
+
+        div#container ul>li#item+li {
+            color: red;
+        }
+
+        div#container ul>li#item~li {
+            font-style: oblique;
+            /* italic(코드로), oblique(글꼴을 만들때 작성된 이탤릭체체) 글씨를 이탤릭체로 */
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="./selector.html">
+            앞으로
+        </a>
+    </h3>
+    <h2>결합선택자(종속선택자의 사용)</h2>
+    <div id="container">
+        <p id="first">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
+            Odit distinctio voluptatem aliquam nemo? <br>
+            Amet minus facere, <span>nulla libero</span> quas in, <br>
+            ut culpa repellendus ducimus dolorum similique! <br>
+            Libero omnis est cupiditate.
+        </p>
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
+            Odit distinctio voluptatem aliquam nemo? <br>
+            Amet minus facere, <span>nulla libero</span> quas in, <br>
+            ut culpa repellendus ducimus dolorum similique! <br>
+            Libero omnis est cupiditate.
+        </p>
+        <ul>
+            <li>item1</li>
+            <li>item2</li>
+            <li id="item">item3</li>
+            <li>item4</li>
+            <li>item5</li>
+        </ul>
+    </div>
+</body>
+
+</html>

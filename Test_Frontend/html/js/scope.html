@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수의 선언과 유효범위</title>
+    <script>
+        // 키워드 없이 선언한 것
+        a = 1234;      // global(window) 영역에 선언
+        console.log(this); // --> 여기에서 확인 가능
+        console.log(a);
+
+        // var 키워드로 선언 : 추천하지 않음.
+        // 선언 후 다른 타입으로 선언해도 문제 없음
+        var age = 25;
+        console.log(age);
+        var age = "스물다섯";
+        console.log(age);
+
+        // let 키워드로 선언 : 추천
+        // 두 번 선언할 수 없음
+        let name = "사오정";
+        console.log(name);
+
+        // let name = "임꺽정"; // 오류
+        name = 1000; // 다른 타입의 데이터를 넣어도 됨! 
+        console.log(`이름은 ${name}`);
+
+        // const 키워드로 선언 : 더 추천 (변수를 선언과 동시에 값 치환)
+        // 기본값을 수정할 수 없다.
+        const addr = '서울시';
+        console.log(`주소는 ${addr}`);
+
+        // addr = '부산시';    // const 변수는 재대입 안됨
+        // console.log(`주소는 ${addr}`);
+        // 객체 타입의 참조값은 수정할 수 없으나 아이템은 수정 가능
+        const obj = {
+            'name': '임꺽정',
+            age: 33
+        }
+        // 다른 주소를 대입할 수 없다.(err)
+        // obj = {
+        //     'name': '전우치',
+        //     age: 35
+        // }
+        obj['name'] = '저팔계'; // 가능
+        console.log(obj);
+
+        console.log('============ Scope ============')
+        /*
+            Scope란? 변수를 선언하고 접근할 수 있는 유효범위.
+            var : 함수레벨 Scope
+            let, const : 블록({}) 레벨 Scope 
+        */
+        function varScope(a, b) {
+            var result = a + b;
+            console.log(`합계 : ${result}`);
+        }
+        varScope(10, 15);
+        // console.log(`result 변수의 값: ` + result);  // 함수 레벨 Scope이므로 사용 불가
+
+        function varScope2(a, b) {
+            var result = a + b
+
+            if (result > 10) {
+                var x = 25;
+                console.log(`합계의 결과가 10을 초과하므로 x 선언: ` + x);
+            }
+            console.log(`그래서 x는?` + x)  // 자바에서는 오류인데 여기서는 사용 가능
+        }
+        varScope2(25, 1);
+        varScope2(1, 1);  // if 안에 진입을 못하므로 x가 선언이 안 되어 있음. but 에러 없음
+        console.log(this);
+
+        // let scope
+        function letScope1(a, b) {
+            let result = a + b;
+            console.log(`합계 : ${result}`);
+        }
+        letScope1(20, 25);
+        // console.log(`let 스코프의 result 변수의 값: ` + result); // 오류. 닫히면 사용 불가능! 
+
+        function letScope2(a, b) {
+            let result = a + b;
+
+            if (result > 10) {
+                let x = 25;
+                console.log(`합계의 결과가 10을 초과하므로 x 선언: ` + x);
+            } // 블록이 닫히면 x는 접근 불가 
+            // console.log(`그래서 x는?` + x)   // 이게 되나요? 오류남.
+        }
+        letScope2(15, 1);
+
+        console.log('============ 클로저 ============');
+        function outerFunc() {
+            let x = 10;
+            let innerFunc = function () { console.log(x); };
+            return innerFunc;
+        }
+
+        /**
+         *  함수 outerFunc를 호출하면 내부 함수 innerFunc가 반환된다.
+         *  그리고 함수 outerFunc의 실행 컨텍스트는 소멸한다.
+         */
+        let inner = outerFunc();
+        inner(); // 10
+
+        function add(a, b) {
+            return function () {
+                let x = a;
+                let y = b;
+                let result = x + y;
+                console.log(`add 함수 합계의 결과: ${result}`);
+            }
+        }
+        let temp = add(22, 33);  // 함수를 호출해야 실행할 수 있다. 
+        temp();
+        add(11, 23)();
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2 id="title">변수의 선언과 유효범위</h2>
+    <ul>
+        <li>변수 선언 방법
+            <ul>자바스크립트의 특징
+                <li>약형 언어(Weakly Language) : 문법적으로 엄격하지 않다. --> 협업에 문제의 소지가 있음</li>
+                <li>키워드 없이 선언 a = 123;</li>
+                <li>var로 선언: 오래된 방식</li>
+                <li>let, const로 선언: 권장되는 방식</li>
+            </ul>
+        </li>
+        <li>Scope란?: 변수를 선언하고 접근할 수 있는 유효범위
+            <ul>
+                <li>var : 함수 레벨 Scope</li>
+                <li>let, const : 블록({}) 레벨 Scope</li>
+            </ul>
+        </li>
+        <li>클로저 (Closure)
+            <ul>
+                <li>함수 내부에서 선언된 변수를 함수 밖에서 사용하도록 내부 함수가 반환</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+p {
+    color: teal;
+}
+
+p.item {
+    background-color: bisque;
+}
+
+/* p.item이 아닌 요소를 선택해서 글꼴과 크기를 적용 */
+:not(p.item) {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2em;
+}
+
+/* 부모가 있는 p 요소의 nth-의 요소 선택 : 숫자, even, odd, n, n 포함 수식 */
+p:nth-child(2n+1) {
+    /* odd, even, 2n, 2n+1 */
+    color: red;
+}
+
+div#box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    background-image: url(../images/smile.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}

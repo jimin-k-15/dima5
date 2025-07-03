@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="~{fragment/header(title='[ 회원 정보 수정 ]')}"></div>
+	
+	<form action="/fitness/update" method="post">
+
+		<label for="id" class="title">번호: </label>
+		<input type="text" id="id" name="id" th:value="${fitness.id}" readonly><br>
+		
+		<label for="name" class="title">이름: </label>
+		<input type="text" id="name" th:value="${fitness.name}" readonly><br>
+		
+		<label for="name" class="title">성별: </label>
+		<input type="text" id="gender" th:value="${fitness.gender == 'M' ? '남성' : '여성'}" readonly>
+		<br>
+		
+		<label for="height" class="title">키(cm): </label>
+		<input type="text" id="height" name="height" th:value="${fitness.height}"><br>
+		
+		<label for="weight" class="title">몸무게(kg): </label>
+		<input type="text" id="weight" name="weight" th:value="${fitness.weight}"><br>
+		<br><br>
+		
+		<input type="submit" id="submitBtn" value="수정">  
+		
+	</form>
+</body>
+</html>

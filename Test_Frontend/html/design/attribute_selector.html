@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 선택자 연습</title>
+    <style>
+        input[type="text"] {
+            width: 100px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+            width: 250px;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="check"]:focus {
+            outline: 1px solid orangered;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="./selector.html">
+            앞으로
+        </a>
+    </h3>
+    <h2>속성 선택자의 사용 예</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Voluptates esse fuga inventore ut pariatur reiciendis eius veniam doloremque sequi vero quibusdam,
+        quia eum culpa natus facere, praesentium harum voluptatum aut?
+    </p>
+    <p>검색창: <input type="text" name="search"></p>
+    <div>
+        <input type="text" placeholder="아이디를 입력"><br>
+        <input type="password" placeholder="비밀번호를 입력"><br>
+        <input type="checkbox"> Remember Me
+    </div>
+</body>
+
+</html>

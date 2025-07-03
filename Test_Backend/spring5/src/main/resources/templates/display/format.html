@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>숫자와 날짜를 포맷 출력</title>
+</head>
+<body>
+	<div th:insert="~{fragment/header(title='[ 숫자와 날짜의 포맷 출력 ]')}"></div>
+
+	<h3>1. 정수 포맷</h3>
+	<ul>
+		<li>정수 Raw 출력: <span th:text="${intNum}"></span></li>
+		<li>NONE 출력(Raw와 동일): <span th:text="${#numbers.formatInteger(intNum, 3, 'NONE')}"></span></li>
+		<li>세번째 전달인자 없음(Raw와 동일): <span th:text="${#numbers.formatInteger(intNum, 3)}"></span></li>
+		<li>천 단위 콤마: <span th:text="${#numbers.formatInteger(intNum, 3, 'COMMA')}"></span></li>
+		<li>천 단위 점: <span th:text="${#numbers.formatInteger(intNum, 3, 'POINT')}"></span></li>
+	</ul>
+	<hr>
+	
+	<h3>2. 실수 포맷</h3>
+	<ul>
+		<li>실수 Raw 출력: <span th:text="${doubleNum}"></span></li>
+		<li>천 단위 콤마, 소수 이하 2자리: 
+			<span th:text="${#numbers.formatDecimal(doubleNum, 3,'COMMA', 2, 'POINT')}"></span>
+		</li>
+	</ul>
+	
+	<h3>3. 날짜, 시간 포맷</h3>
+	<ul>
+		<li>날짜 Raw 출력: <span th:text="${today}"></span></li>
+		<li>시간 Raw 출력: <span th:text="${now}"></span></li>
+		<li>날짜 포맷 출력: 
+			<span th:text="${#temporals.format(today, 'yyyy년 MM월 dd일')}"></span>
+		</li>
+		<li>시간 포맷 출력: 
+			<span th:text="${#temporals.format(now, 'yyyy년 MM월 dd일 hh시 mm분 ss초 (E), (EE), (EEE)')}"></span>
+		</li>
+	</ul>
+	
+	<h3>4. 백분율, 통화기호 포맷</h3>
+	<ul>
+		<li>백분율 Raw 출력: <span th:text="${today}"></span></li>
+		<li>통화 Raw 출력: <span th:text="${money}"></span></li>
+		<li>백분율 포맷 출력: 
+			<span th:text="${#numbers.formatPercent(percent, 0, 2)}"></span>
+		</li>
+		<li>통화기호 포맷 출력: 
+			<span th:text="${#numbers.formatCurrency(money)}"></span>
+		</li>
+	</ul>
+</body>
+</html>

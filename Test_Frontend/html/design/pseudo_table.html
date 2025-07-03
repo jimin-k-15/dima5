@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블에 가상 클래스 적용</title>
+    <style>
+        table {
+            border: 2px solid #333;
+            border-collapse: collapse;
+        }
+
+        table>thead {
+            background-color: #eee;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #eee;
+            padding: 10px 20px 10px 20px;
+            /* 상 하 좌 우 */
+        }
+
+        table tbody>tr:hover {
+            background-color: rgb(145, 236, 239);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="./selector.html">
+            앞으로
+        </a>
+    </h3>
+
+    <h2>테이블에 가상 클래스 선택자 적용 연습</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>제목1</th> <!-- 제목 셀 -->
+                <th>제목2</th>
+                <th>제목3</th>
+                <th>제목4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>내용11</td>
+                <td>내용12</td>
+                <td>내용13</td>
+                <td>내용14</td>
+            </tr>
+            <tr>
+                <td>내용21</td>
+                <td>내용22</td>
+                <td>내용23</td>
+                <td>내용24</td>
+            </tr>
+            <tr>
+                <td>내용31</td>
+                <td>내용32</td>
+                <td>내용33</td>
+                <td>내용34</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position을 이용한 콘텐츠 배치(1)</title>
+    <style>
+        div.item {
+            width: 150px;
+            height: 150px;
+            border: 1px solid rgb(0, 0, 0);
+            background-color: cadetblue;
+        }
+
+        div.one {
+            /* 아래요소(동생요소)에 영향을 미치지 않는다. */
+            position: relative;
+            top: 50px;
+            left: 50px;
+            background-color: blueviolet;
+        }
+
+        div.three {
+            /* 아래요소(동생요소)에 영향을 미치지 않는다. */
+            position: relative;
+            top: 50px;
+            /* one과 완전히 겹쳐지게 하려면 top: -102px */
+            left: 50px;
+            background-color: plum;
+        }
+
+        div.two {
+            /* 아래요소(동생요소)에 영향을 미친다. */
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background-color: cornflowerblue;
+        }
+
+        div.four {
+            /* 아래요소(동생요소)에 영향을 미치지 않는다. */
+            position: relative;
+            top: 100px;
+            left: 100px;
+            background-color: darkkhaki;
+            z-index: 5;
+            /* 높은 정수값을 가진 요소가 위로 배치 */
+        }
+
+        div.five
+
+        /* 아래요소(동생요소)에 영향을 미치지 않는다. */
+            {
+            position: relative;
+            left: 150px;
+            background-color: fuchsia;
+            z-index: 8;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>Position을 이용한 콘텐츠 배치(1)</h2>
+    <p>
+        요소를 특정 위치에 자유롭게 배치할 수 있도록 도와주는 속성<br>
+        static : (default) - 요소가 본래부터 가지고 있는 배치 형태<br>
+        absolute : 부모의 (absolute, relative 부모) position 위치를 이용해 배치. Layer를 생성(top, bottom, left, right) <br>
+        relative : 자신의 position 위치를 이용해 배치. Layer를 생성(top, bottom, left, right) <br>
+        fixed : 화면을 기준으로 배치. Layer를 생성(top, bottom, left, right) <br>
+    </p>
+    <div class="item one">하나</div>
+    <div class="item two">둘</div>
+    <div class="item three">셋</div>
+    <div class="item four">넷</div>
+    <div class="item five">다섯</div>
+</body>
+
+</html>

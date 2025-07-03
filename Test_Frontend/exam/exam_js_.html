@@ -1,0 +1,77 @@
+<!-- 1) 사칙연산 계산기 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <fieldset>
+        <legend>
+            <h2>간단한 계산기</h2>
+        </legend>
+        <div>
+            <input type="text" id="x">
+            <select id="operator">
+                <option value="+"> 더하기 </option>
+                <option value="-"> 빼기 </option>
+                <option value="*"> 곱하기 </option>
+                <option value="/"> 나누기 </option>
+                <option value="**"> 거듭제곱 </option>
+            </select>
+            <input type="text" id="y">
+            <input type="button" value="=" id="calculator">
+            <input type="button" value="C" id="clear">
+            <input type="text" id="result" readonly>
+        </div>
+    </fieldset>
+
+    <script>
+        document.getElementById("calculator").addEventListener('click', calc);
+        document.getElementById("clear").addEventListener('click', clear);
+
+        function calc() {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+            let op = document.getElementById("operator").value;
+
+            if (x == "" || y == "") {
+                alert("숫자를 정확히 입력해 주세요.");
+                return;
+            }
+
+            if (isNaN(x) || isNaN(y)) {
+                alert("숫자만 입력 가능합니다.");
+                return;
+            }
+
+            let result = 0;
+
+            if (op === "+") {
+                result = Number(x) + Number(y);
+            } else if (op === "-") {
+                result = x - y;
+            } else if (op === "*") {
+                result = x * y;
+            } else if (op === "/") {
+                result = x / y;
+            } else if (op === "**") {
+                result = x ** y;
+            }
+
+            document.getElementById("result").value = result;
+        }
+
+
+        function clear() {
+            document.getElementById("result").value = "";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="~{fragment/header(title='[ 회원정보 조회 ]')}"></div>
+	<h2> [[${fitness.name}]] 회원의 정보 </h2>
+	
+	<table border="1">
+	
+		<tr>
+			<th>이름 </th>
+			<td th:text="${fitness.name}"></td>
+		</tr>
+		
+		<tr>
+			<th>성별 </th>
+			<td th:text="${fitness.gender == 'M' ? '남성' : '여성'}"></td>
+		</tr>
+		
+		<tr>
+			<th>키 </th>
+			<td th:text="|${fitness.height}cm|"></td>
+		</tr>
+		
+		<tr>
+			<th>몸무게 </th>
+			<td th:text="|${fitness.weight}kg|"></td>
+		</tr>
+		
+		<tr>
+			<th>표준체중 </th>
+			<td th:text="|${#numbers.formatDecimal(fitness.stdWeight, 0, 'COMMA', 2, 'POINT')}kg|"></td>
+		</tr>
+		
+		<tr>
+			<th>BMI </th>
+			<td th:text="|${#numbers.formatDecimal(fitness.bmi, 0, 'COMMA', 2, 'POINT')}kg|"></td>
+		</tr>
+		
+		<tr>
+			<th>BMI 결과</th>
+			<td th:text="${fitness.bmiResult}"></td>
+		</tr>
+		
+		<tr>
+			<th colspan="2">
+				<a th:href="@{/fitness/delete(id=${fitness.id})}">삭제</a>
+				<a th:href="@{/fitness/update(id=${fitness.id})}">수정</a>
+			</th>
+		</tr>
+		
+	</table>
+</body>
+</html>

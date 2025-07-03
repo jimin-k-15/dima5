@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시멘틱 태그의 사용</title>
+    <style>
+        header,
+        div#content,
+        footer {
+            width: 1000px;
+            border: 1px solid #000;
+            margin: 0 auto;
+        }
+
+        nav#gnb ul li {
+            float: left;
+            width: 20%;
+        }
+
+        div#content {
+            height: 1000px;
+        }
+
+        footer {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>로고</h2>
+        <nav id="gnb">
+            <ul>
+                <li>회사소개</li>
+                <li>회원가입</li>
+                <li>사이트 이용안내</li>
+                <li>FAQ</li>
+                <li>Contact us</li>
+            </ul>
+        </nav>
+    </header>
+    <div id="content">
+        <section>주요 기사</section>
+        <arcticle>기타 기사</arcticle>
+    </div>
+    <footer>
+        <address>서울시 강남구 삼성동 코엑스 4층 ICT교육센터 <span id="tel">TEL: 02-1234-5678</span></address>
+        <div>개인정보 처리방침</div>
+    </footer>
+</body>
+
+</html>

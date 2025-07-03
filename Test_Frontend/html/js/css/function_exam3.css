@@ -1,0 +1,28 @@
+#receiveBtn {
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+}
+
+table {
+    width: 600px;
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+table thead tr:nth-child(1) {
+    background-color: aquamarine;
+}
+
+td,
+th {
+    padding: 10px;
+    border: 1px dotted gray;
+    text-align: center;
+}
+
+table>tbody>tr:hover {
+    background-color: cadetblue;
+    color: white;
+    font-weight: bold;
+}

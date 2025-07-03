@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 문제</title>
+    <script>
+        /* 1~50까지 난수를 10개 발생시켜 배열에 저장한다.
+            예) [ 1, 42, 7, 8, 12, ... ]
+                [ 0, 2, 5, ... ] <- 홀수에 해당하는 인덱스만 포함
+        */
+        let ary = [];
+        let idx = [];
+
+        for (let i = 0; i < 10; ++i) {
+            ary.push(Math.floor(Math.random() * 50 + 1));
+        }
+
+        ary.forEach((item, index) => {
+            if (item % 2) idx.push(index);
+        });
+
+        console.log(ary);
+        console.log(idx);
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>배열 문제</h2>
+    <p style="color:red;">※ 실행결과는 콘솔창으로 보시오!</p>
+</body>
+
+</html>

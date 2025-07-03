@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하이퍼링크를 표기하는 태그</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        a:link {
+            color: black;
+        }
+
+        a:hover {
+            color: green;
+            font-weight: bold;
+        }
+
+        a:active {
+            color: orange;
+            font-weight: bolder;
+        }
+
+        a:visited {
+            color: blue;
+        }
+
+        /* a:focus {
+            background-color: aqua;
+        } */
+    </style>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>하이퍼링크를 표기하는 태그</h2>
+    <p>
+        a 태그를 이용해 홈페이지 내의 문서나 다른 사이트로의 이동이 가능<br>
+        필수옵션 - href: 이동할 위치의 URL(Uniform Resource Location) <br>
+        선택옵션 - title: 마우스를 호버시켰을 때 팁이 출력<br>
+        &nbsp;&nbsp;&nbsp; target: 링크의 내용이 표시될 창 (_self, _blank, 사용자정의)
+        href의 값 없이 #으로 대체할 경우, 링크 모양만 나타남<br>
+        닫힌 요소, 인라인 요소, 텍스트가 있으면 텍스트 링크, 이미지가 있으면 이미지 링크<br>
+        하이퍼링크는 링크상태, active상태, 호버상태, visited상태, focus상태<br>
+
+    </p>
+
+    <h3 id="section1">텍스트링크</h3>
+    <ul>
+        <li><a href="http://naver.com" target="_self">네이버</a></li> <!-- _self는 default. 생략 가능 -->
+        <li><a href="http://nate.com" target="_blank">네이트(새 창 열기)</a></li>
+        <li><a href="http://daum.net" target="mywin">다음(사용자 정의 창 열기)</a></li>
+        <li><a href="http://google.com" target="mywin">구글(사용자 정의 창 열기)</a></li>
+    </ul>
+
+    <h3>이미지링크</h3>
+    <ul>
+        <li>
+            <a href="https://v.daum.net/v/20250610064004114" title="신문기사 이동">
+                <img src="https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202506/10/sportalkr/20250610064008681bnuj.jpg"
+                    width="100px">
+            </a>
+        </li> <!-- _self는 default. 생략 가능 -->
+    </ul>
+
+    <h3>특정 위치로 이동</h3>
+    <p>
+        href속성에 #을 이용해서 문서의 특정 위치로 이동 가능<br>
+        href="#section1" ==> 현재 문서의 아이디가 section으로 지정된 곳으로 이동<br>
+        href에 넣을 수 있는 값: 다른 URL, 현재 문서의 특정 위치, 다른 문서의 특성 위치<br>
+        Javascript의 함수 호출도 가능
+    <ul>
+        <li><a href="#">이동하지 않음</a></li>
+        <li><a href="#section1">현재 문서의 Section1으로 이동</a></li>
+        <li><a href="exam_01.html#section2">다른 문서의 Section2로 이동</a></li>
+    </ul>
+    </p>
+</body>
+
+</html>

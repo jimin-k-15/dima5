@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>제품 입출고 현황</title>
+    <script defer th:src="@{/js/stockInsert.js}"></script>
+</head>
+
+<body>
+ 	<h1>
+        <a th:href="@{/}">
+            <img th:src="@{/images/home.png}" alt="홈으로">
+        </a>
+    </h1>
+    
+    <h2>제품 입출고 현황</h2>
+    <form id="stockProc" action="/stockProc" method="POST">
+        <label>날짜 : <input type="date" id="creationDate" name="creationDate"></label><br>
+        <label>제품명 : <input type="text" id="productName" name="productName"></label><br>
+        <label>입출고 상태 :
+            <input type="radio" name="status" value="1" checked>입고&nbsp;
+            <input type="radio" name="status" value="0">출고</label><br>
+        <label>단가 : <input type="number" id="unitPrice" name="unitPrice" value="0"></label><br>
+        <label>개수 : <input type="number" id="count" name="count" value="1"></label><br>
+        <label>세부내용 : <textarea name="details" id="details"></textarea></label><br>
+        <input type="button" id="btn" value="등록">
+        <input type="reset" value="취소">
+    </form>
+</body>
+
+
+</html>

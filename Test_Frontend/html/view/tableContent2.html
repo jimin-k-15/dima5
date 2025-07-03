@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블 콘텐츠를 나타내는 태그(2)</title>
+    <style>
+        div#main {
+            width: 800px;
+            margin: 0 auto;
+            /* 0: 상하, auto: 자동계산 */
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            border: 2px solid #333;
+            border-collapse: collapse;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        table thead {
+            background-color: #eee;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #eee;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <div id="main">
+        <h2>진료시간 변경</h2>
+        <p>진료시각 및 종료시각이 30분씩 앞당겨집니다.</p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>이비인후과</th>
+                    <th>내과</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>평일</th>
+                    <td colspan="2">8:30~15:30</td>
+                </tr>
+                <tr>
+                    <th>토요일</th>
+                    <td>8:30~13:30</td>
+                    <td>8:30~12:30</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

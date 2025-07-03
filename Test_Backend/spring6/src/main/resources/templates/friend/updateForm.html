@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring6</title>
+</head>
+
+<body>
+    <h2>친구정보 수정</h2>
+    <form action="/update" method="post">  
+    	<!-- hidden : 화면에는 보이지 않지만 정보를 받아서 보낼 수 있음  -->
+    	<input type="hidden" name="id" th:value="${friend.id}">
+        <label for="fname">이름: </label>
+        <input type="text" name="name" id="fname" th:value="${friend.name}"><br>
+        <label for="fage">나이: </label>
+        <input type="number" name="age" id="fage" th:value="${friend.age}"><br>
+        <label for="fphone">전화번호: </label>
+        <input type="text" name="phone" id="fphone" th:value="${friend.phone}"><br>
+        <label for="fbirthday">생일: </label>
+        <input type="date" name="birthday" id="fbirthday" th:value="${friend.birthday}"><br>
+        <label>성향:
+            <input type="radio" name="active" value="1" th:checked="${friend.active}">외향적
+            <input type="radio" name="active" value="0" th:checked="${not friend.active}">내성적
+        </label><br>
+        <input type="submit" value="정보 수정">
+    </form>
+</body>
+
+</html>

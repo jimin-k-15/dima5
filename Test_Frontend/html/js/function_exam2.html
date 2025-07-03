@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[문제] CSS 배경이미지 바꾸기</title>
+    <style>
+        div#target {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            /* background-image: url(./images/img1.png); */
+        }
+    </style>
+    <script>
+        window.addEventListener('load', changeColor);
+        function changeColor() {
+            let btn = document.getElementById("change");
+            let target = document.getElementById("target");
+            btn.addEventListener('click', function () {
+                // let images = ['img1.png', 'img2.png', 'img3.png', 'img4.png', 'img5.png'];
+                // 1) 이미지번호 랜덤
+                let imgChoice = Math.floor(Math.random() * 5 + 1);
+                // let myImg = images[imgChoice];
+                // 선택한 imgChoice 그림을 target에 배경 그림으로 입힘
+                console.log(imgChoice);
+                target.style.backgroundImage = `url(./images/img${imgChoice}.png)`;
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>[문제] CSS 배경이미지 바꾸기</h2>
+    <input id="change" type="button" value="그림 바꾸기">
+    <div id="target"></div>
+</body>
+
+</html>

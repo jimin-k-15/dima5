@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>등록 처리 결과</title>
+</head>
+<body>
+	<h1>
+		<a href="">
+			<img th:src="@{/images/home.png}">
+		</a>
+	</h1>
+	<h2>등록 결과</h2>
+	<ul>
+		<li>이름 : <span th:text="${dto.name}"></span></li>
+		<li>성별 : <span th:text="${dto.gender}"></span></li>
+		<li>키 : <span th:text="${dto.height}"></span></li>
+		<li>몸무게 : <span th:text="${dto.weight}"></span></li>
+		<li>표준몸무게 : <span th:text="${bmi}"></span></li>
+		<li>BMI : <span th:text="${bmi}"></span></li>
+	</ul>
+</body>
+</html>

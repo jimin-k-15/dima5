@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 연산자</title>
+    <script>
+        let a = 3;
+        let result = 10 / 3;
+        console.log(`10을 ${a}로 나눈 값: ${result}`);
+        console.log(`${a}를 세제곱한 결과: ${a ** 3}`);
+
+        let x = 0;
+        ++x;
+        console.log(`x의 결과: ${x}`);
+        console.log(`x의 결과: ${x++}`);    // 출력 후 증가하므로 화면상에는 1로 보임 
+
+        let y = "3";
+        console.log(`${a}와 ${y}값의 동등 여부? ${a == y}`);    // 문자열 y를 파싱해서 값이 같으면 같다고 봄
+        console.log(`${a}와 ${y}값의 일치 여부? ${a === y}`);   // 문자열 y와 a가 타입도 같고 값도 같아야 같다고 봄
+
+        console.log(`a변수의 값과 x변수의 값을 비교: ${a > x}`) // a=3, x=2
+        console.log(`a변수의 값이 0~5 사이인지 확인: ${0 < a < 5}`) // 틀린 표현 (a값이 0~5 사이의 값인지?)
+        // 0 < a < 5 : Python에서는 true 
+        // a > 0 && a < 5 : Java와 JavaScript에서는 이렇게 해야 함
+        console.log(`a변수의 값이 0~5 사이인지 확인: ${a > 0 && a < 5}`);   // 맞는 표현
+        console.log(`y변수의 타입 : ${typeof y}`);
+        /*
+        ※ 단축평가(Short circuit) : (&& ||)
+        - 왼쪽 연산의 결과에 따라 오른쪽 연산을 실행할 것인지 결정하는 기능
+        - 논리연산자 && || 에서 나타남 
+
+        && (둘 중 하나만 false여도 전체 결과가 false)
+        F && ? = F
+        F && ? = F
+
+        || (둘 중 하나만 true여도 전체 결과가 true)
+        T || ? = T
+        T || ? = T
+        */
+        // 단축평가 실습
+        let c = 1;
+        c > 1 || console.log('연습-1 : 실행되니?');   // 앞의 연산이 f이므로 뒤 연산 clg를 실행
+        c == 1 || console.log('연습-2 : 실행되니?');  // 앞의 연산이 t이므로 뒤 연산 clg를 실행 x
+
+        // 비트관련 연산자 ( ~(단항연산자) >> << & | ^ )
+        let z = -1;     // 1111 1111 (2의 보수 표현법)
+        console.log(`${z}의 ~z의 결과 : ${~z}`); // 1의 보수로 전부 바꾸면 0000 0000
+
+        let d = 8;      // 0000 1000
+        z = 1;          // 0000 0001
+        console.log(`${z}의 z << 2의 결과 : ${z << 2}`);    // 0000 0100 (4)
+        console.log(`${z}의 ${d} z & d의 결과 : ${z & d}`); // 0000 0000 (0)
+        console.log(`${z}의 ${d} z | d의 결과 : ${z | d}`); // 0000 1001 (9)
+        console.log(`${z}의 ${d} z ^ d의 결과 : ${z ^ d}`); // 0000 1001 (9)
+
+        // 삼항연산자 : 참, 거짓의 위치에 문장이 올 수 있다! (자바와 다른 점) 
+        a = 5;
+        c = 3;
+
+        a < c ?
+            console.log(`${a}가 ${c}보다 작다`)
+            : console.log(`${a}가 ${c}보다 크다`)
+
+        // 전개연산자 (spread 연산자)
+        let obj1 = { name: '홍길동' };
+        let obj2 = { name: '임꺽정' };
+        let obj3 = { addr: '제주도 서귀포시' };
+        console.log(JSON.stringify(obj1))
+
+        let obj13 = { ...obj1, ...obj3 };
+        console.log(JSON.stringify(obj13));
+
+        let obj12 = { ...obj2, ...obj1 };   // key가 같기 때문에 뒤의 데이터 하나만 가능
+        console.log(JSON.stringify(obj12));
+
+        // 객체 데이터를 배열로 펼치기
+        // Syntax 오류는 아니지만 obj1, obj3의 값이 iterable한 데이터가 아니므로 실행할 때 오류
+        // let objTemp = [...obj1, ...obj3];   
+        // console.log(objTemp);
+
+        // 배열에 전개 연산자 사용
+        let ary1 = [1, 3, 5, 7];
+        let ary2 = [2, 4, 5, 8];
+        let ary12 = [...ary1, ...ary2];
+        console.log(`배열을 배열로 spread => ${ary12}`); // 1,3,5,7,2,4,5,8
+
+        // 방 번호가 key가 됨. 
+        // 방 번호가 같으면 뒤의 방 번호에 해당하는 데이터만 살아남고, 앞 데이터는 날아감.
+        // {"0":1, "1":3, "2":5, "3":7}
+        // {"0":2, "1":4, "2":5, "3":8}
+        let aryTemp = { ...ary1, ...ary2 };
+        console.log(`배열을 객체로 spread => ${JSON.stringify(aryTemp)}`);
+        // {"0":2, "1":4, "2":5, "3":8}
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>자바스크립트 연산자</h2>
+    <p style="color:red;">※ 실행결과는 콘솔창으로 보시오!</p>
+    <ol>
+        <li>산술연산자: + - * / % **(거듭제곱 연산자)</li>
+        <li>증감연산자: ++, --</li>
+        <li>비교연산자: &gt;(초과), &lt;(미만), &ge;(이상), &le;(이하), <br>
+            == (동등), === (일치), != (유사하지 않음), !== (완전 다름) </li>
+        <li>논리연산자: &&, ||, !(단항연산자) </li>
+        <li>타입확인 연산자: typeof (오른쪽에 위치한 피연산자의 타입을 확인)</li>
+        <li>비트관련 연산자: &gt;&gt;, &lt;&lt;, ~(1's complements) &amp; | ^(XOR)</li>
+        <li>대입 연산자: LV = RV (Left Value는 변수만 가능) </li>
+        <li>복합대입 연산자: += -= *= ... </li>
+        <li>삼항연산자: (조건) ? (참) : (거짓) ==> 참, 거짓의 위치에 문장 허용</li>
+        <li>전개 연산자 (spread 연산자): {}나 []에서 사용하며 "...객체"의 형태로 사용</li>
+    </ol>
+</body>
+
+</html>

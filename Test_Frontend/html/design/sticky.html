@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="kp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position sticky를 이용한 화면 배치</title>
+    <style>
+        h2 {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        /* Sticky 영역 설정 */
+        div.sticky {
+            position: sticky;
+            height: 80px;
+            top: 0px;
+            padding: 20px 5px 5px 5px;
+            background-color: rgba(135, 206, 235, 0.8);
+        }
+
+
+        /* 본문영역에 세로 스크롤 생성 */
+        div.container {
+            padding-bottom: 2000px;
+        }
+
+        /* 검색창 영역 처리 */
+        div.search {
+            width: 460px;
+            height: 50px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: 5px 5px 5px gray;
+            padding: 0 20px;
+            border: 1px solid gray;
+
+            /* flex 지정 */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* 입력 상자 */
+        div.search input[type='text'] {
+            display: inline-block;
+            width: 400px;
+            height: 20px;
+            padding: 5px;
+            outline: none;
+            border: none;
+        }
+
+        /* 돋보기 그림 */
+        div.search img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>Position Sticky</h2>
+    <!-- sticky 영역 -->
+    <div class="sticky">
+        <div class="search">
+            <input type="text" placeholder="검색 입력">
+            <a href="">
+                <img src="./images/magnifier.png" alt="검색">
+            </a>
+        </div>
+    </div>
+
+    <!-- 본문 영역 -->
+    <div class="container">
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequatur magni repellendus explicabo earum nihil dolore,
+            quaerat obcaecati iure, laboriosam temporibus ea rem ab unde!
+            Non illum ducimus dolore qui laudantium!
+        </p>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequatur magni repellendus explicabo earum nihil dolore,
+            quaerat obcaecati iure, laboriosam temporibus ea rem ab unde!
+            Non illum ducimus dolore qui laudantium!
+        </p>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequatur magni repellendus explicabo earum nihil dolore,
+            quaerat obcaecati iure, laboriosam temporibus ea rem ab unde!
+            Non illum ducimus dolore qui laudantium!
+        </p>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequatur magni repellendus explicabo earum nihil dolore,
+            quaerat obcaecati iure, laboriosam temporibus ea rem ab unde!
+            Non illum ducimus dolore qui laudantium!
+        </p>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Consequatur magni repellendus explicabo earum nihil dolore,
+            quaerat obcaecati iure, laboriosam temporibus ea rem ab unde!
+            Non illum ducimus dolore qui laudantium!
+        </p>
+    </div>
+</body>
+
+</html>

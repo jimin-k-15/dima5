@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 관련 콘텐츠</title>
+    <style>
+        .title {
+            background-color: chocolate;
+            display: inline-block;
+            width: 70px;
+            /* block에만 줄 수 있는 스타일 */
+            height: 35px;
+            /* block에만 줄 수 있는 스타일 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>폼을 만드는 태그</h2>
+    <ul>
+        <li>form태그 - action, method(GET, POST), enctype</li>
+        <li>fieldset, legend - 폼의 경계를 만들고 제목을 넣을 때</li>
+        <li>input : type ==> text, password, fild, hidden, submit, reset</li>
+        <li>input : name ==> 서버 쪽 변수명 지정할 때</li>
+        <li>input : type ==> checkbox, radio(같은 그룹의 데이터를 선택), name이 같으면 같은 그룹</li>
+        <li>select : optgroup(선택), option(필수)을 이용해서 드롭다운 방식으로 데이터 선택</li>
+        <li>textarea : 여러줄 글상자, name(필수), cols/rows를 이용해서 크기 조정</li>
+        <li>기타등등 : 범위의 값, 이메일, 검색창, 색상, 숫자 등의 입력 상자가 있다.</li>
+        <li>global attributes : id(현재 페이지 내에서 유일한 값), class(중복된 값을 부여)</li>
+    </ul>
+    <hr>
+    <h3>다양한 폼의 작성</h3>
+    <form action="join" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>사용자 데이터 입력</legend>
+            <label for="name">이름: </label>
+            <input type="text" id="name" name="userName" placeholder="이름 입력" maxlength="7"> <br>
+            <!-- String username; -->
+
+            <label>아이디: <input type="text" name="userId"></label> <br> <!-- String userid; -->
+            <!-- label이 input을 포함하고 있을 때는 for,id 필요없음 -->
+
+            <label>비밀번호: <input type="password" name="userpwd" placeholder="비밀번호 입력"></label><br>
+            <label><input type="hidden" name="hiddenData"></label> <!-- 클라이언트 모르게 데이터를 전달받고 싶을 때 -->
+            <!-- 첨부파일을 보낼 때에는 반드시 method="POST", enctype="multipart/form-data"로 지정 -->
+            <label>첨부파일: <input type="file" name="attachFile"></label><br>
+
+            <hr>
+            <label>취미: &nbsp;&nbsp;
+                <!-- join?userName=홍길동&userId=gildong&hobby=fishing&hobby=등산&hobby=수영 즉 사용자가 입력한 값이 value.
+                서버에서는 이렇게 받음 : String hobby="fishing,등산,수영" -->
+                <input type="checkbox" name="hobby" value="fishing"> 낚시
+                <input type="checkbox" name="hobby" value="등산"> 등산
+                <input type="checkbox" name="hobby" value="수영" checked> 수영
+                <input type="checkbox" name="hobby" value="독서"> 독서
+                <input type="checkbox" name="hobby" value="TV시청"> TV시청
+            </label><br>
+            <label>성별: &nbsp;&nbsp;
+                <input type="radio" name="gender" value="남성" checked> 남성
+                <input type="radio" name="gender" value="여성"> 여성
+            </label><br>
+
+            <hr>
+            <label>사는 지역:
+                <select name="location" size="1" multiple>
+                    <option value="동작구">동작구</option>
+                    <option value="강남구">강남구</option>
+                    <option value="서초구">서초구</option>
+                    <option value="강북구" selected>강북구</option>
+                </select>
+            </label><br>
+            <hr>
+            <label>출신학교(optgroup 2개로) <!-- optgroup(초등학교, 중학교) -->
+                <select name="school" size="2">
+                    <optgroup label="대치동">
+                        <option value="대곡초등학교">대곡초</option>
+                        <option value="대치초등학교">대치초</option>
+                    </optgroup>
+                    <optgroup label="일원동">
+                        <option value="영희초등학교">영희초</option>
+                        <option value="일원초등학교">일원초</option>
+                    </optgroup>
+                </select>
+            </label><br>
+
+            <hr>
+            <legend>반품사유:
+                <textarea name="reason" cols="100" rows="10"></textarea>
+            </legend>
+
+            <input type="submit" value="가입하기">
+            <input type="reset" value="취소"> <!-- form으로 감싸고 있어야 취소 버튼이 작동함 -->
+            <input type="button" value="그냥 버튼"> <!-- Javascript와 함께 사용하기 위해, 즉 프로그램과 연동해서 쓰기 위한 목적뿐이고, 기능은 없음 -->
+            <button type="button">버튼??? </button>
+            <input type="image" src="./images/button.png" alt="가입하기"> <!-- submit이다! -->
+        </fieldset>
+    </form>
+
+    <br>
+    <form action="where" method="get">
+        <fieldset>
+            <legend>기타 등등</legend>
+            <label for="color" class="title">색상: </label>
+            <input type="color" name="mycolor" id="color"><br>
+
+            <label for="join_date" class="title">가입일: </label>
+            <input type="date" name="birthday" id="join_date"><br>
+
+            <label for="now" class="title">현재일시: </label>
+            <input type="datetime-local" name="current" id="now"><br>
+
+            <label for="email" class="title">email: </label>
+            <input type="email" name="email" id="email"><br>
+
+            <label for="volume" class="title">볼륨: </label>
+            <input type="range" name="volume" id="volume" min="0" max="100" step="10"><br>
+
+            <label for="age" class="title">나이: </label>
+            <input type="number" name="" id="age" min="0" max="100"><br>
+
+            <label for="search" class="title">검색: </label>
+            <input type="search" name="search" id="search"><br>
+        </fieldset>
+    </form>
+</body>
+
+</html>

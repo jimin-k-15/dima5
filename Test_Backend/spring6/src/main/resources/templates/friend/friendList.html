@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script defer th:src="@{/js/friend.js}"></script>
+
+
+</head>
+<body>
+	<h2>전체 출력</h2>
+	<div>
+		<table border="1">
+			<tr>
+				<th>일련번호</th>
+				<th>이름</th>
+				<th>나이</th>
+				<th>전화번호</th>
+				<th>생년월일</th>
+				<th>성향</th>
+				<th></th>
+			</tr>
+			<tr th:each="friend, status: ${list}">
+				<td th:text="${status.count}"></td>
+				<td th:text="${friend.name}"></td>
+				<td th:text="${friend.age}"></td>
+				<td th:text="${friend.phone}"></td>
+				<td th:text="${friend.birthday}"></td>
+				<td th:text="${friend.active? '외향적' : '내성적'}"></td>
+				<td>
+					<input type="button" class="deleteFriend" th:data-id="${friend.id}" value="삭제">
+					<input type="button" class="updateFriend" th:data-id="${friend.id}" value="수정">
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+</body>
+</html>

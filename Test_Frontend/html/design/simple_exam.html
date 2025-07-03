@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단순 선택자 연습</title>
+    <style>
+        /* 특이값: 0 */
+        * {
+            font-family: 'Times New Roman', Times, serif;
+            color: rgb(4, 4, 104);
+        }
+
+        /* 특이값: 11 */
+        p.test {
+            background-color: rgb(71, 211, 113);
+        }
+
+        /* 특이값: 10 */
+        .one {
+            background-color: cornflowerblue;
+        }
+
+        /* 특이값: 100 */
+        #two {
+            font-size: 1.5em;
+        }
+
+        #two,
+        .three {
+            color: rgb(255, 255, 255);
+            background-color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="./selector.html">
+            앞으로
+        </a>
+    </h3>
+
+    <h2>단순 선택자 연습</h2>
+    <p class="one">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,
+        iusto harum consequuntur hic quas voluptatem.
+    </p>
+
+    <p class="three">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,
+        iusto harum consequuntur hic quas voluptatem.
+    </p>
+
+    <p class="one test">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,
+        iusto harum consequuntur hic quas voluptatem.
+    </p>
+
+    <p id="two">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,
+        iusto harum consequuntur hic quas voluptatem.
+    </p>
+</body>
+
+</html>

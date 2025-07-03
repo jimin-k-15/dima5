@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 데이터 타입(2)</title>
+    <script>
+        // 객체 타입 (Prototype 객체)
+        let obj = {
+            name: '손오공',
+            age: 30,
+            sayHello: function () {
+                console.log("내 이름은 " + this.name + "이고, 만나서 반가워~")
+            }
+        }
+        console.log(typeof obj)
+        console.log(obj['name']);   // 꺼낼 때는 'name'처럼 작은따옴표 반드시 필요
+        console.log(obj['age']);
+        obj.sayHello();
+        console.log(obj['sayHello']);
+
+        // JSON (Java Script Object Notation: 
+        // 네트워크를 통해 데이터를 송수신하기 위한 자료형)
+        // 키는 큰따옴표로 지정해야 함 (json.org 참고)
+        let json = { "name": '사오정', "age": 29 };
+        console.log(JSON.stringify(json));
+        // console.log(str);               // 문자열로 변환. 값을 가져올 수 없음. 
+        console.log(typeof str);        // 타입은 문자열
+        console.log('-------- JS HTML에 접근 --------')
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2 id="title">자바스크립트 데이터 타입(2)</h2>
+    <ul>
+        <li>JSON
+            <ul>
+                <li>데이터를 송수신하기 위한 용도</li>
+                <li>JSON 이전에는 xml을 이용해서 데이터를 송수신했으나, 복잡</li>
+                <li>구조적인 모습은 {} Object와 동일. 키를 큰따옴표로!</li>
+                <li>JSON.stringify()를 이용해서 JSON -> 문자열로 변환</li>
+                <li>JSON.parse()를 이용해서 문자열 -> JSON으로 변환</li>
+            </ul>
+        </li>
+        <li>HTML :
+            <ul>
+                <li>JS를 이용해서 HTML에 접근하여 구조를 변경할 수 있다.</li>
+                <li>단, JS가 HTML에 접근하려면 주의해야 한다. DOM구조가 메모리에 구축된 후</li>
+                <li>document.getElementById()와 같은 함수를 이용해서 접근 가능 </li>
+            </ul>
+        </li>
+    </ul>
+    <p>동해물과 백두산</p>
+    <p>가을하늘 공활한데</p>
+    <div class="item">하나</div>
+    <div class="item">둘</div>
+    <div><span>대한민국</span></div>
+    <script>
+        let myid = document.getElementById("title");
+        console.log(myid);
+        console.log(typeof myid);       // object
+        // window.alert(typeof myid);      // html object
+
+        let myp = document.getElementsByTagName("p"); // 배열로 반환
+        console.log(myp[1]);
+        let myclass = document.getElementsByClassName('item') // 배열로 반환
+        console.log(myclass.length);  // 2개
+        console.log(myclass[0]);
+
+        // HTML을 가져오면 내용을 바꿔치기 할 수 있다. 
+        // innerText: 문자열 내의 태그를 문자열로 처리
+        // innerHTML: 문자열 내의 태그를 태그로 처리하여 렌더링
+        myid.innerHTML = "바꿨다!";
+        myid.innerHTML = `<span style='color:red'>바꿨소이다?</span>`;
+        myid.innerHTML = `<span style='color:red'>바꿨는가?</span>`;
+    </script>
+</body>
+
+</html>

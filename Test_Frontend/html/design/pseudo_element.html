@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상 요소 선택자 연습</title>
+    <style>
+        p.one::first-letter {
+            color: violet;
+            font-size: xx-large;
+            font-weight: bolder;
+        }
+
+        p.two::first-line {
+            background-color: aquamarine;
+        }
+
+        p.three::before {
+            content: url(./images/smile.png);
+        }
+
+        p.four::after {
+            content: url(./images/marker.png);
+        }
+
+        p.five::marker {
+            color: red;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="./selector.html">
+            앞으로
+        </a>
+    </h3>
+    <p class="one">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,<br>
+        iusto harum consequuntur hic quas voluptatem. <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,<br>
+        iusto harum consequuntur hic quas voluptatem. <br>
+    </p>
+
+    <p class="two">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,
+        iusto harum consequuntur hic quas voluptatem.
+    </p>
+
+    <p class="three">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,
+        iusto harum consequuntur hic quas voluptatem.
+    </p>
+
+    <p class="four">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,
+        iusto harum consequuntur hic quas voluptatem.
+    </p>
+    <p class="five">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Beatae porro voluptatum recusandae autem quis ea iste quo asperiores iure voluptatibus optio laudantium
+        exercitationem et,
+        iusto harum consequuntur hic quas voluptatem.
+    </p>
+</body>
+
+</html>

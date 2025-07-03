@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 데이터 타입(1)</title>
+    <script>
+        // (1) 수치 자료형
+        console.log("<< 수치형 >>")
+        let number = 12;
+        console.log(number);
+        console.log(typeof number);
+        console.log('숫자는 ' + number);
+        console.log(number / 5);   // 연산을 할 때에는 소수까지 연산 
+        console.log('-----숫자는 진법을 표현할 수 있다.-----');
+        console.log('2진수 => ' + 0b1011);
+        console.log('8진수 => ' + 0o1267);
+        console.log('16진수 => ' + 0xff);
+        console.log('-----숫자는 지수 표현도 가능-----');
+        console.log('10^3승 => ' + 1E3);
+        console.log('2^6승 => ' + 2E6);
+        console.log('0.1^2승 => ' + 0.1E2);
+
+        // (2) BigInt 자료형
+        console.log("<< BigInt형 >>"); // number에서 다룰 수 있는 값의 큰 수 : 2^53-1
+        let big1 = 1000n;
+        let big2 = BigInt("12345"); // 문자열을 bigint 타입으로!
+        console.log(big1);
+        console.log(typeof big1);
+        console.log(big2);
+        console.log('더하기 => ', (big1 + big2));
+        console.log('빼기 => ', (big1 - big2));
+        console.log('곱하기 => ', (big1 * big2));
+        console.log('나누기 => ', (big1 / big2));  // 소수점이 생기면 버림
+        console.log('나머지 => ', (big1 % big2));
+
+        /*
+        - 비트연산 못함, 기본적인 산술연산 가능, / 는 소수를 못 구함(주의!)
+        - 연산시 number와 함께 연산하지 못한다. -> 명시적 형변환을 해서 사용
+        - 숫자 끝에 n을 붙이면 된다. 
+        */
+
+        // (3) 문자열 자료형
+        /* 큰따옴표, 작은따옴표, 백틱(여러 줄 문자열 가능, 템플릿 문자열도 가능)
+        */
+        console.log("<< 문자열형 >>");
+        let str1 = "안녕?";
+        console.log(str1);
+        console.log(typeof str1);
+        console.log("우리 동네 새로 생긴 마트 이름은 '아줌마 마트'입니다.");
+        console.log('아빠가 말씀하셨다. "옛다, 용돈이다!"')
+
+        let str2 = `무궁화 꽃이 피었습니다.
+나리나리 개나리`;
+        console.log(str2);
+
+        // 문자열 템플릿 리터럴
+        let age = 25;
+        console.log('당신의 나이는 ' + age + '살입니다.');
+        console.log(`당신의 나이는 ${age}살입니다. 10년 후에는 ${age + 10}살이 됩니다.`);
+
+        // escape sequence로 사용할 수 있다.(\n, \t) 
+        let story = '대한민국\n';
+        story += 'Korea';
+        console.log(story);
+
+        // (4) 진위형
+        /* true와 false로 출력되는 연산 혹은 값
+        Falsy - null, undefined, 숫자 0, -0, 0n, false, NaN
+        Truthy - 0을 제외한 모든 값, {}, [], true, "a", new Date(), Infinity... 
+        */
+        console.log("<< 진위형 >>");
+        let bool1 = true;
+        let bool2 = 10 > 5;
+        console.log(bool1);
+        console.log(typeof bool2);
+        if (0) {
+            console.log("0은 참입니다.");
+        } else {
+            console.log("0은 거짓입니다.")
+        }
+        if ([]) {
+            console.log("[] 참입니다.");
+        } else {
+            console.log("[] 거짓입니다.")
+        }
+
+        // (5) undefined 형
+        console.log("<< undefined형 >>");
+        let name;  // 선언 후 초기화하지 않으면 초기화할 때까지 TDZ라는 영역에 배치됨  
+        console.log('name은 ' + name);
+        console.log('타입은 ' + typeof name)
+        name = '홍길동';  // stack 영역에 배치
+
+        // (5) Symbol 형
+        /*
+        - 데이터의 유일성을 보장하기 위해 사용 (비교적 최근에 만들어진 타입)
+        - {} 객체의 키로 사용
+        */
+        console.log("<< Symbol형 >>");
+        const sym1 = Symbol();          // 빈 문자열 설명으로 생성
+        const sym2 = Symbol('sym2');    // 'sym2' 문자열을 이용한 설명으로 생성 
+        const sym3 = Symbol('sym3');
+
+        // 심볼 사용해보기
+        const obj1 = { 'name': '홍길동', 'age': 25 };
+        const obj2 = { [sym2]: '심볼 2', [sym3]: '심볼3', 'addr': '서울시' };
+        console.log(obj1 + " : " + obj1['name']);
+        console.log(obj2 + " : " + obj2[sym2]);
+
+        const ary = [10, 20, 30, 40, 50];  // iterator 데이터는 entries()로 조회 가능
+        for (const [idx, value] of ary.entries()) {
+            console.log(`${idx}번 방에는 ${value}가 있음`);
+        }
+
+        const dict = { "name": "홍길동", "tel": "010-1234-5678", "addr": "서울시 강남구" };
+        for (const [key, value] of Object.entries(dict)) {
+            console.log(key, value);
+        }
+
+        // (6) null 데이터 타입
+        console.log("<< null 데이터 타입 >>");
+        let target = null;
+        console.log(target);
+        console.log(typeof target);    // Object라고 출력됨
+
+        // function (선언적 함수)
+        function add(a, b) {
+            return a + b;
+        }
+        let result = add(10, 12);  // 호출(call)
+        console.log(`함수 처리 결과 : ${result}`);
+
+        // 익명함수 (표현적 함수)
+        let func = function (c, d) {
+            return c * d;
+        };
+        result = func(2, 7);
+        console.log(`표현함수 처리 결과 : ${result}`);
+
+        // immediately function (즉시처리 함수: 1회용)
+        result = function (e, f) {
+            return e - f;
+        }(5, 3);
+        console.log(`즉시처리함수 처리 결과 : ${result}`);
+
+        console.log(typeof add);
+
+        // ----------( 함수의 선언과 표현의 차이)
+        /*
+        (함수 호이스팅(Hoisting): )
+        함수가 선언되었을 경우 함수의 선언부는 식보다 먼저 메모리에 로딩  
+        */
+        result = myFunc();
+        console.log('선언함수 호출 결과: ' + result);
+
+        // 1) 함수의 선언
+        function myFunc() {
+            return 10 + 20;
+        }
+
+
+        // 2) 함수의 표현 : 함수보다 위에서 호출하면 오류
+        // result = yourFunc();
+        // console.log('표현함수 호출 결과: ' + result);
+
+        // 식이기 때문에 호이스팅이 안 됨. 그래서! 윗부분에서 호출하면 오류! 
+        let yourFunc = function () {
+            return 10 - 20;
+        }
+        console.log("========== 참조형 데이터 타입 ==========")
+        let arr = [5, 10, 15, 20];
+        console.log('배열의 타입: ' + typeof arr);
+        console.log(arr);
+        console.log('2번방 데이터 출력: ' + arr[2]);    // 방 번호로 접근
+        arr[10] = 100;      // 데이터 넣기 
+        console.log(arr);   // [5, 10, 15, 20, undefined, u, u, u, u, u, 100]
+        console.log(arr[7]);
+
+        arr = [5, 10, 15, [11, 22, 33]];
+        console.log('arr 배열의 요소 개수: ' + arr.length);
+        console.log(arr[3][1]);
+
+        let obj = { '이름': '홍길동', '학년': 2, '전공': '심리학' };
+        console.log('{}의 타입 : ' + typeof obj);
+        console.log(obj);
+        console.log('전공의 값 : ' + obj['전공']);      // 키 값으로 접근 (꺼내기)
+        obj['학점'] = 'A+';
+        console.log(obj);
+
+        obj = { '이름': '홍길동', '학년': 2, '전공': { '부전공1': '컴공', '부전공2': '무역학' } };
+        obj['전공']['부전공1'];
+        console.log(obj['전공']['부전공1']);
+
+        // ---------- 내장객체
+        let today = new Date();
+        console.log(today.toString());
+
+    </script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2 id="title">자바스크립트 데이터 타입(1)</h2>
+    <div>
+        <ul>
+            <li>원시타입(Primitive type) = 기초자료형
+                <ul>
+                    <li>number: 정수 실수를 포함한 숫자데이터</li>
+                    <li>bigint: 비교적 새로 만들어진 데이터타입. number로 처리할 수 없는 큰 정수 타입</li>
+                    <li>string: 문자열</li>
+                    <li>boolean: 진위형</li>
+                    <li>undefined: 변수가 선언되었지만 값이 할당되지 않음</li>
+                    <li>null: 참조하고 있는 값이 없음(개발자가 잘못 만든 타입이라고 고백,,)</li>
+                    <li>Symbol: 객체의 고유한 식별자를 만들기 위해 사용됨</li>
+                    <li>function: 정의된 함수</li>
+                </ul>
+            </li>
+            <li>참조타입(Referenced type) => 객체
+                <ul>
+                    <li>내장객체: 제공되는 객체</li>
+                    <li>사용자 정의 객체: <br>
+                        []-인덱스로 데이터 저장, <br>
+                        {}-key,value 쌍으로 데이터 저장, <br>
+                        class로 선언된 객체 </li>
+                    <li>html 객체: JS로 document에 접근해서 얻어온 객체</li>
+                </ul>
+            </li>
+            <li>주의: 코드 결과는 콘솔창(F12-Console)으로 확인하시오!</li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+	<h1>
+		<img th:src="@{/images/home.png}" alt="로고">
+	</h1>
+	<h2>[ 직원 정보 조회 ]</h2>
+	
+	<table border="1">
+		<tr>
+			<th>일련번호</th>
+			<th>사원번호</th>
+			<th>이름</th>
+			<th>급여</th>
+			<th>입사일</th>
+			<th>부서명</th>
+		</tr>
+		<tr th:each="emp, status: ${list}">
+			<td th:text="${status.count}"></td>
+			<td th:text="${emp.employeeId}"></td>
+			<td> [[${emp.firstName}]] [[${emp.lastName}]]</td>
+			<td th:text="${emp.salary}"></td>
+			<td th:text="${emp.hireDate}"></td>
+			<td th:text="${emp.departmentName}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>

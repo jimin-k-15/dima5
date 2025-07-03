@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS로 DOM Node 처리</title>
+    <script defer src="./script/node.js"></script>
+</head>
+
+<body>
+    <h1>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h1>
+    <h2>JS로 DOM Node 처리(innerHTML과의 차이)</h2>
+    <p>
+        beforeend : 닫는태그 바로 앞<br>
+        beforebegin : 시작태그 바로 앞<br><br>
+
+        afterbegin : 시작태그 바로 뒤<br>
+        afterend : 닫는태그 바로 뒤<br><br>
+
+    </p>
+    <h3>innerHTML/innerText</h3>
+    <div>
+        <input id="inner" type="button" value="innerHTML 처리">
+    </div>
+
+    <p id="innerTarget">나리나리 개나리<br>입에따다 물고요</p>
+
+    <hr>
+
+    <h3>beforeend, beforebegin, afterbegin, afterend</h3>
+    <div>
+        <input type="button" id="afterend" value="afterend">
+        <input type="button" id="afterbegin" value="afterbegin">
+        <input type="button" id="beforeend" value="beforeend">
+        <input type="button" id="beforebegin" value="beforebegin">
+    </div>
+    <ul id="list">
+        <li>하나</li>
+        <li>둘</li>
+        <li>셋</li>
+    </ul>
+</body>
+
+</html>

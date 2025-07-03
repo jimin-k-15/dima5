@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경 색상과 이미지 처리</title>
+    <style>
+        body {
+            background-image: url(./images/cat.jpg);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-attachment: fixed;
+            background-color: azure;
+        }
+
+        div.container {
+            width: 100%;
+            height: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <a href="../index.html">
+            <img src="./images/home.png" alt="홈으로">
+        </a>
+    </h3>
+    <div class="container">
+        <h2>배경이미지 / 배경색 처리</h2>
+        <ul>
+            <li>배경색 : background-color</li>
+            <li>배경 이미지 : background-image - url(경로)
+                <ul>
+                    <li>background-repeat: 반복 여부(repeat, repeat-x, repeat-y)</li>
+                    <li>background-position: 위치 지정(수평위치 수직위치)</li>
+                    <li>background-attachment: 배경그림의 부착 여부</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

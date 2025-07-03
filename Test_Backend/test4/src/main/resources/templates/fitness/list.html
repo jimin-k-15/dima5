@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:insert="~{fragment/header(title='[ 전체 회원 정보 ]')}"></div>
+	
+	<table border="1">
+		<tr>
+			<th>일련번호</th>
+			<th>이름</th>
+			<th>성별</th>
+		</tr>
+		<tr th:each="fitness, status: ${list}"> 
+			<td th:text="${status.count}"></td>
+			<td><a th:href="@{/fitness/selectOne(id=${fitness.id})}" th:text="${fitness.name}"></a></td>
+			<td th:text="${fitness.gender == 'M' ? '남성' : '여성'}"></td>
+		</tr>
+	
+	</table>
+	
+</body>
+</html>

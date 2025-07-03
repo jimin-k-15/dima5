@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>제품 입출고 현황 관리</title>
+</head>
+<body>
+ 	<h1>
+        <a th:href="@{/}">
+            <img th:src="@{/images/home.png}" alt="홈으로">
+        </a>
+    </h1>
+    
+	<h2>처리 완료</h2>
+	<ul>
+		<li>날짜: [[${user.creationDate}]]</li>
+		<li>제품명: [[${user.productName}]]</li>
+		<li>입출고상태: [[${user.status}]]</li>
+		<li>단가: [[${user.unitPrice}]]</li>
+		<li>개수: [[${user.count}]]</li>
+		<li>세부내용: [[${user.details}]]</li>
+	</ul>
+</body>
+</html>
