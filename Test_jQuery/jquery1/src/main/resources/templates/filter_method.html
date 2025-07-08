@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>필터 선택자</title>
+<style>
+	div.item1, div.item2, div.item3, div.item4 {
+		width: 50px;
+		height: 50px;
+		border: 1px solid black;
+		float: left;
+		margin: 5px;
+	}
+	div.first, div.second, div.third, div.fourth, h2 {
+		clear: both;
+	}
+</style>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(function(){
+	// .eq(n): n은 index 값이므로 0부터 
+	$("div.item1").eq(2).css({"background" : "orange"});  // 6개 중 2번째 것을 선택
+	
+	// 필터: nth-child(n) => n이 index가 아닌 count값 (즉, 0이 아니라 1부터 시작) 
+	$("div.item2:nth-child(2n)").css({"background" : "yellow"});  
+	
+	$("div.item2").not(":nth-child(2n)").css({"background" : "silver"});  
+	
+	// is(): 현재 선택된 요소의 상태를 확인. t/f가 반환
+	$("div.item3").each(function() {
+		if($(this).is('.choice')) {
+			$(this).css('background', 'green');
+		}	
+	});
+	
+	// .filter(), method chaining
+	$("div.item4")
+		.css("background", "#c9ef98")		// css 입히고
+		.filter(".box")						// 한 번 걸러낸 다음
+		.css("border", "2px solid red");	// 다시 css 입히기
+	
+});  	
+	</script>
+</head>
+<body>
+	<h2>필터 메소드(.eq(n), .not(), .is() )</h2>
+	<div class="first">
+		<div class="item1"></div>
+		<div class="item1"></div>
+		<div class="item1"></div>
+		<div class="item1"></div>
+		<div class="item1"></div>
+		<div class="item1"></div>
+	</div>
+	<div class="second">
+		<div class="item2"></div>
+		<div class="item2"></div>
+		<div class="item2"></div>
+		<div class="item2"></div>
+		<div class="item2"></div>
+		<div class="item2"></div>
+	</div>
+	<div class="third">
+		<div class="item3"></div>
+		<div class="item3 choice"></div>
+		<div class="item3"></div>
+		<div class="item3 choice"></div>
+		<div class="item3 choice"></div>
+		<div class="item3"></div>
+	</div>
+	<h2>필터 메소드(.filter())</h2>
+	<div class="fourth">
+		<div class="item4"></div>
+		<div class="item4 box"></div>
+		<div class="item4"></div>
+		<div class="item4"></div>
+		<div class="item4 box"></div>
+		<div class="item4 box"></div>
+	</div>
+</body>
+</html>

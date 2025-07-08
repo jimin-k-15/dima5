@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>prop로 상태 조작하기</title>
+<style>
+	
+</style>
+
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(function(){
+	// 전체선택 체크상자를 선택했을 때 동작
+	$("#checkAll").on('click', function(){
+		if($(this).is(":checked")) {
+			$("#memberTable input:checkbox").prop("checked", true);
+		} else {
+			$("#memberTable input:checkbox").prop("checked", false);
+		}
+	});
+	
+	// 삭제버튼을 클릭했을 때 동작
+	$("#deleteMember").on('click', function(){
+		let delItem = $("#memberTable input:checkbox:checked").parent().parent();
+		delItem.remove();	// remove()는 DOM에서 제거하는 메소드
+	});
+});  	
+</script>
+</head>
+<body>
+	<div id="container">
+		<h2 id="title">[ 고객 목록 ]</h2>
+		<div>
+			<form action="" method="post">
+				<select name="searchType">
+					<option value="name">이름</option>
+					<option value="grade">등급</option>
+				</select>
+				<input type="text" name="searchText">
+				<input type="button" value="검색">
+			</form>
+		</div><br>
+		
+		<div id="action">
+			<input type="checkbox" id="checkAll">
+			<input type="button" id="deleteMember" value="삭제">
+		</div>
+		
+		<table id="memberTable" border="1">
+			<tr>
+				<th>선택</th>
+				<th>이름(이메일)</th>
+				<th>주소</th>
+				<th>전화번호</th>
+				<th>고객등급</th>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>강감찬(kang@naver.com)</td>
+				<td>서울시 관악구 낙성대동</td>
+				<td>010-7777-8888</td>
+				<td>최우수</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>권율(youl@naver.com)</td>
+				<td>부산시 사하구</td>
+				<td>010-8888-9999</td>
+				<td>일반</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>김유신(kim@naver.com)</td>
+				<td>경상남도 경주시</td>
+				<td>010-8880-9990</td>
+				<td>우수</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>이순신(lee@naver.com)</td>
+				<td>경상남도 통영시</td>
+				<td>010-8880-9988</td>
+				<td>우수</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td>최영(choi@naver.com)</td>
+				<td>평안북도 개마시</td>
+				<td>010-8889-7777</td>
+				<td>최우수</td>
+			</tr>
+			
+		</table>
+	</div>
+	
+</body>
+</html>

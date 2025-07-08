@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>필터 선택자</title>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(function(){
+	$("tr:first").css("background-color", "gray");  // tr 태그의 첫번째 자식, 즉 제목 부분
+	$("tr:odd").css("background-color", "pink");  
+	$("td:nth-child(3n+1)").css("color", "blue");  
+	$("td:nth-child(3n+2)").css("font-weight", "bold");  
+});  	
+	</script>
+</head>
+<body>
+	<h2>필터 선택자</h2>
+	<table border="1">
+		<tr>
+			<th>이름</th>
+			<th>전화번호</th>
+			<th>주소</th>
+		</tr>
+		<tr>
+			<td>손오공</td>
+			<td>010-2222-3333</td>
+			<td>서울시</td>
+		</tr>
+		<tr>
+			<td>저팔계</td>
+			<td>010-5555-6666</td>
+			<td>제주도</td>
+		</tr>
+		<tr>
+			<td>전우치</td>
+			<td>010-9999-8888</td>
+			<td>부산시</td>
+		</tr>
+	</table>
+</body>
+</html>

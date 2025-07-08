@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원정보 검증</title>
+<style>
+	
+</style>
+
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+let idCheck = false; 	// 전역변수 설정. 그렇게 좋은 방법은 아님
+let pwdCheck = false;
+
+$(function(){
+	idnpwdCheck();
+	$("#submitBtn").on('Click', function() {
+		if(idCheck != true || pwdCheck != true) {
+			alert("아이디와 비밀번호를 제대로 입력하세요.");
+			
+			$("#userid").focus();
+			return;
+		}
+		
+		
+	});
+});
+
+// 아이디와 비번 체크하는 함수
+function idnpwdCheck() {
+	$("#userid").on('keyup', function() {
+		let userid = $(this).val();   // this 자리에 "#userid" 써도 동일
+		if(userid.trim().length < 3 || userid.trim().length > 5) {
+			$("#idCheck").text("아이디는 3~5자 이내로 입력하세요.");
+			idCheck = false;
+		} else {
+			$("#idCheck").text("");
+			idCheck = true;
+		}
+	});
+	
+	$("#userpwd").on('keyup', function() {
+		let userpwd = $(this).val();   // this 자리에 "#userpwd" 써도 동일
+		if(userpwd.trim().length < 3 || userpwd.trim().length > 5) {
+			$("#pwdCheck").text("비밀번호는 3~5자 이내로 입력하세요.");
+			pwdCheck = false;
+		} else {
+			$("#pwdCheck").text("");
+			pwdCheck = true;
+		}
+		alert("회원가입 완료!");   // 가짜,, 
+		// $("#memberJoin").submit();
+	});
+}
+</script>
+
+</head>
+<body>
+	<h2>[ 회원 가입 ]</h2>
+	<form id="memberJoin">
+		<table border="1">
+			<tr>
+				<th>아이디</th>
+				<td>
+					<input type="text" id="userid" placeholder="아이디 3~5자 사이로 입력">
+					<span id="idCheck"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>비밀번호</th>
+				<td>
+					<input type="password" id="userpwd" placeholder="비밀번호 3~5자 사이로 입력">
+					<span id="pwdCheck"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>성별</th>
+				<td>
+					<input type="radio" name="gender" value="남성" checked> 남성 &nbsp;
+					<input type="radio" name="gender" value="여성"> 여성
+				</td>
+			</tr>
+			<tr>
+				<th>취미</th>
+				<td>
+					<input type="checkbox" name="hobby" value="독서"> 독서 &nbsp;
+					<input type="checkbox" name="hobby" value="수영"> 수영 &nbsp;
+					<input type="checkbox" name="hobby" value="등산"> 등산 &nbsp;
+					<input type="checkbox" name="hobby" value="러닝"> 러닝 &nbsp;
+				</td>
+			</tr>
+			<tr>
+				<th>거주지</th>
+				<td>
+					<select name="location">
+						<option value='서울'>서울</option>
+						<option value='제주'>제주</option>
+						<option value='경기'>경기</option>
+						<option value='부산'>부산</option>
+						<option value='광주'>광주</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					<input type="button" id="submitBtn" value="가입">
+				</th>
+			</tr>
+			
+		</table>
+	</form>
+</body>
+</html>

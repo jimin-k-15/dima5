@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>우수고객 목록</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function() {
+	$("#regist").on('click', regist);
+});
+
+// 데이터 등록하기
+function regist() {
+	// 1) 데이터 수집
+	let name = $("#name").val();
+	let phone = $("#phone").val();
+	let gender = $("input[type='radio']:checked").val();
+	let location = $("#location").val();
+	
+	let sendData = {"name": name, "phone": phone, "gender": gender, "location": location};
+	alert(JSON.stringify(sendData));
+}
+
+</script>
+</head>
+<body>
+	<h2>[ 고객관리 ]</h2>
+	<div id="vip">
+		<label>이름: <input type="text" id="name" placeholder="이름"></label>&nbsp;
+		<label>전화번호: <input type="text" id="phone" placeholder="전화번호"></label>&nbsp;
+		<label>성별: 
+			<input type="radio" name="gender" class="gender" value="남성" checked>남성 &nbsp;
+			<input type="radio" name="gender" class="gender" value="여성">여성 &nbsp;
+		</label>
+		<label>주소지:
+			<input type="text" id="location" placeholder="주소지">
+		</label>
+		<input type="button" id="regist" value="등록">
+	</div>
+
+</body>
+</html>

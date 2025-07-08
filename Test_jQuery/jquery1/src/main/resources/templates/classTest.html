@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CLASS 조작하기</title>
+<style>
+	img { background: #777;}
+	img.type1 {background: #9ac7fd;}
+	img.type2 {background: #da97cd;}
+	img.type3 {background: #980912;}
+	img.type4 {background: #9e1ff4;}
+	img.type5 {background: #fe5678;}
+</style>
+
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(function(){
+	$("img").on('click', function() {
+		let n = Math.ceil(Math.random() * 5);	// 4
+		
+		let currentImg = $(this);		        // 클릭한 그림
+		let existClass = currentImg.attr('class');
+		
+		currentImg.removeClass(existClass).addClass("type" + n);
+	});
+	
+	$("input").on('change', function() {
+		let status = $(this);
+		
+		$("#result").html(
+			`.attr('checked') : <b> ${ status.attr("checked") } </b><br>
+			.is('checked') : <b> ${ status.is("checked") } </b><br>
+			.prop('checked') : <b> ${ status.prop("checked") } </b><br>
+			`
+		);
+	});
+});  	
+</script>
+</head>
+<body>
+	<h2>클래스 조작(addClass(), removeClass())</h2>
+	
+	<p>
+		<img src="/images/cat1.png">
+		<img src="/images/cat2.png">
+		<img src="/images/cat3.png">
+		<img src="/images/cat4.png">
+		<img src="/images/cat5.png">
+	</p>
+	
+	<hr>
+	<h2>Check box 상태 읽어오기(is(), attr(), prop())</h2>
+	<p>
+		<input type="checkbox" id="check1" checked="checked">
+		<label for="check1">Check 하시오.</label><br>
+		<div id="result"></div>
+	</p>
+	
+</body>
+</html>

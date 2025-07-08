@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ajax 테스트</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function() {
+	$("#req1").on('click', req1);
+	$("#req2").on('click', req2);
+	$("#req3").on('click', req3);
+});
+
+//3) 세 번째 요청 (<--- List )
+function req3() {
+	$.ajax({
+		url: "ajaxReq3"
+		, method: "GET"
+		, success: function(resp) {	// let resp = ['복숭아', '오렌지'];
+			let data = '';
+			
+			$.each(resp, function(index, item){
+				data += item + "<br>"
+			});
+			$('#req3_result').html(data);
+		}
+	});
+}
+
+// 2) 두 번째 요청 (JSON <--> Map)
+function req2() {
+	// 데이터 수집
+	let username = $("#username").val();
+	let phone = $("#phone").val();
+	
+	let sendData = { "username" : username, "phone" : phone };
+	
+	// 데이터 전송
+	$.ajax({
+		url: "ajaxReq2"
+		, method: "POST"
+		, data: sendData
+		, success: function(resp) {  // let resp = {"name" : "홍길동", "phone" : ""};
+			let n = resp["name"];
+			let p = resp["phone"];
+			let tag = `이름: ${n} <br>
+					   번호: ${p}`;
+			$("#req2_result").html(tag);	  
+		}
+	});
+}
+
+// 1) 첫 번째 요청
+function req1() {
+	$.ajax({
+		url : 'ajaxReq1'
+		, method : 'GET'
+		, success : function(resp) {
+			console.log("응답이 도착함 ==> " + resp);
+			$("#req1_result").text(resp);
+		}
+	});	
+}
+
+</script>
+</head>
+<body>
+	<h2>Ajax 연습</h2>
+	<ul>
+		<li>1. 비동기 처리 기초
+			<ul>
+				<li>
+					<input type="button" id="req1" value="1. 서버로 Ajax 요청 보내기">
+					<span id="req1_result">응답 결과는 브라우저의 콘솔창에서 확인하세요.</span>
+				</li>
+			</ul>
+		</li><br>
+		<li>
+			<label for="username">
+				이름: <input type="text" id="username">
+			</label>
+			<label for="phone">
+				전화번호: <input type="text" id="phone">
+			</label>
+			<input type="button" id="req2" value="2. Ajax로 데이터 송수신">
+			<p id="req2_result" style="color:red;"></p>
+		</li><br>
+		<li>
+			<input type="button" id="req3" value="3. 여러 개 문자열 데이터 수신">
+			<p id="req3_result" style="color:orange;"></p>
+		</li>
+	</ul>
+	
+	<p><a href="/customer">(Next) 우수 고객 목록</a></p>
+</body>
+</html>

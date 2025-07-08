@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>동적으로 생성된 요소에 이벤트 입히기</title>
+<style>
+	
+</style>
+
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+
+// 프로그램이 구동될 때
+$(function(){
+	$('#addGraduate').on('click', addGraduate);		// 학력사항 추가버튼
+	$('#addCareer').on('click', addCareer);			// 경력사항 추가버튼
+	$('#submitBtn').on('click', submitProc);		// 데이터 전송 처리
+});
+
+// 1) 학력사항 추가 함수
+function addGraduate() {
+	let addData = 
+	`
+	<div>
+		<input type="text" class="graduate" name="graduate" placeholder="학력을 추가하세요">
+		<input type="button" class="delGraduate" value="삭제">
+	</div>
+	`;
+	
+	// 추가하기 전, 입력상자에 데이터가 입력되어 있는지 확인
+	let lastData = $("#graduateForm").find('.graduate').last().val();
+	// console.log(lastData);
+	if(lastData.trim().length < 1) {
+		alert("데이터를 입력하세요");
+		return;
+	}
+	
+	// DOM에 데이터 추가
+	$("#graduateForm").append(addData);		// 동적으로 추가된 데이터 -> 이벤트를 걸기 어려움. 함수가 끝나기 전에 걸어야 함								
+	$(".delGraduate").on('click', delGraduate);
+}
+
+// 2) 학력사항 삭제 함수
+function delGraduate(event) {
+	// console.log(event);
+	
+	event.stopImmediatePropagation();	// 이벤트 전파를 막음!
+	
+	let data = $(this).prev().val();		// 형님 prev, 동생 next
+	
+	// 학력사항에 값이 들어있으면 경고를 출력
+	if(data.trim().length > 0) {
+		if(!confirm("입력된 정보를 삭제하시겠습니까?")) {	
+			return;
+		}	
+	}
+	
+	$(this).parent().remove();
+}
+
+// 3) 경력사항 추가 함수
+function addCareer() {
+	let addData = 
+	`
+	<div>
+		<input type="text" class="career" name="career" placeholder="경력을 추가하세요">
+		<input type="button" class="delCareer" value="삭제">
+	</div>
+	`;
+	
+	// 추가하기 전, 입력상자에 데이터가 입력되어 있는지 확인
+	let lastData = $("#careerForm").find('.career').last().val();
+
+	if(lastData.trim().length < 1) {
+		alert("경력사항을 입력하세요");
+		return;
+	}
+	
+	// DOM에 데이터 추가
+	$("#careerForm").append(addData);		// 동적으로 추가된 데이터 -> 이벤트를 걸기 어려움. 함수가 끝나기 전에 걸어야 함								
+	$(".delCareer").on('click', delCareer);
+}
+
+// 4) 경력사항 삭제 함수
+function delCareer() {
+	event.stopImmediatePropagation();	// 이벤트 전파를 막음!
+	
+	let data = $(this).prev().val();	
+	
+	// 경력사항에 값이 들어있으면 경고를 출력
+	if(data.trim().length > 0) {
+		if(!confirm("입력된 정보를 삭제하시겠습니까?")) {	
+			return;
+		}	
+	}
+	
+	$(this).parent().remove();
+}
+
+// 5)
+function submitProc() {
+	$("#resumeRegist").submit();
+}
+
+
+</script>
+</head>
+<body>
+	<h2>[ 이력서 관리 ]</h2>
+	
+	<form id="resumeRegist" action="/resumeRegist" method="POST">
+		<h3>1. 학력 사항</h3>
+		<input type="button" id="addGraduate" value="학력 추가"><br>
+		<div id="graduateForm">
+			<div>
+				<input type="text" class="graduate" name="graduate" placeholder="학력을 추가하세요">
+			</div>
+		</div>
+		
+		<h3>2. 경력 사항</h3>
+		<input type="button" id="addCareer" value="경력 추가"><br>
+		<div id="careerForm">
+			<div>
+				<input type="text" class="career" name="career" placeholder="경력을 추가하세요">
+			</div>
+		</div>
+		<br><br>
+		<input type="button" id="submitBtn" value="등록">
+		
+	</form>
+</body>
+</html>
