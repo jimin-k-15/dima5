@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+	<div>
+		<a href="/">
+			<img th:src="@{/images/logo.png}" alt="로고">
+		</a>
+		<h2>로그인</h2>
+	</div>
+	
+	<form action="/loginProc" method="post">
+		<label for="userId">User ID: 
+			<input type="text" name="userId" id="userId">
+		</label> <br>
+		
+		<label for="userPwd">User Password: 
+			<input type="password" name="userPwd" id="userPwd">
+		</label> <br>
+		
+		<input type="submit" id="loginBtn" value="로그인">
+	</form>
+</body>
+</html>

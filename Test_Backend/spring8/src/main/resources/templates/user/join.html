@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+	<div>
+		<a href="/">
+			<img th:src="@{/images/logo.png}" alt="로고">
+		</a>
+		<h2>회원가입</h2>
+	</div>
+	
+	<form action="/joinProc" method="post">
+		<label for="userId">User ID: 
+			<input type="text" name="userId" id="userId">
+			<input type="button" value="중복확인">
+		</label> <br>
+		
+		<label for="userPwd">User Password: 
+			<input type="password" name="userPwd" id="userPwd">
+		</label> <br>
+		
+		<label for="userName">User Name: 
+			<input type="text" name="userName" id="userName">
+		</label> <br>
+		
+		<input type="submit" id="joinBtn" value="회원가입">
+	</form>
+</body>
+</html>

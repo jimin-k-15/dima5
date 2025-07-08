@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://thymeleaf.org"
+	  xmlns:sec = "http://thymeleaf.org/extras/spring-security"
+>
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+	<div>
+		<img th:src="@{/images/logo.png}" alt="로고">
+		<h2>첫 페이지</h2>
+	</div>
+
+	<ul>
+		<!-- 로그인 안 한 사용자 -->
+		<th:block sec:authorize="isAnonymous()">
+			<li><a href="/login">로그인</a></li>
+			<li><a href="/join">회원가입</a></li>
+		</th:block>
+		
+		<!-- 로그인 한 사용자 -->
+		<th:block sec:authorize="isAuthenticated()">
+			<li><a href="/logout">로그아웃</a></li>
+			<li><a href="">개인정보 수정</a></li>
+		</th:block>
+		
+		<!-- 로그인 한 관리자 -->
+		<th:block sec:authorize="hasRole('ADMIN')">
+			<li><a href="/admin/adminPage">관리자 페이지</a></li>
+		</th:block>
+		
+		<!-- 로그인과 관계없는 메뉴 -->
+		<li><a href="">뉴스피드</a></li>
+	</ul>
+	<br>
+	<hr>
+	<h2>사용자 정보 확인(ROLE)</h2>
+	<div sec:authorize="hasRole('USER')">일반사용자</div>
+	<div sec:authorize="hasRole('ADMIN')">관리자</div>
+	<div sec:authorize="hasRole('MANAGER')">매니저</div>
+	
+	<hr>
+	<h2>인증 사용자 확인</h2>
+	<div sec:authorize="isAuthenticated()">로그인한 사용자가 볼 수 있다.</div>
+	<div sec:authentication="name"></div>님!
+	
+	<hr>
+	<h2>방문자 확인</h2>
+	<div sec:authorize="isAnonymous()">로그인하지 않은 일반 방문자가 볼 수 있다.</div>
+	
+	
+	
+	
+</body>
+</html>
