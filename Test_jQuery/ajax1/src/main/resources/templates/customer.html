@@ -6,6 +6,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 $(function() {
+	init();
 	$("#regist").on('click', regist);
 });
 
@@ -18,7 +19,85 @@ function regist() {
 	let location = $("#location").val();
 	
 	let sendData = {"name": name, "phone": phone, "gender": gender, "location": location};
-	alert(JSON.stringify(sendData));
+	// alert(JSON.stringify(sendData)); // 확인용 경고창 
+	
+	// 2) 데이터 전송
+	$.ajax({
+		url: 'insert',
+		method: 'post',
+		data: sendData,
+		success: function(resp) {  // let resp = 'success';
+			if(resp === 'success') {
+				clear();
+				init();		// DB에 접근해서 모든 데이터를 가져온 후, 화면에 출력
+			}
+		}
+	});
+}
+// 입력상자 지우기
+function clear() {
+	$("#name").val('');
+	$("#phone").val('');
+	$("#location").val('');
+}
+
+// 모든 데이터 조회
+function init() {
+	$.ajax({
+		url : 'selectAll',
+		method : 'get',
+		success : output
+	});
+}
+
+// 서버로부터 받은 데이터를 화면에 출력
+function output(resp) {
+	
+	// 반복하지 않는 부분과
+	let tag = `						 
+		<table border="1">
+		<tr>
+			<th>번호</th>
+			<th>이름</th>
+			<th>전화번호</th>
+			<th>성별</th>
+			<th>주소지</th>
+			<th></th>
+		</tr>`;
+		
+		// 반복하는 부분을 분리 -> 반복문 안에 넣기
+		$.each(resp, function(index, item) {
+		tag += `<tr>				
+					<td>${index+1}</td>		
+					<td>${item["name"]}</td>	 // 자바스크립트 문법			
+					<td>${item["phone"]}</td>
+					<td>${item["gender"]}</td>
+					<td>${item["location"]}</td>
+					<td>
+						<input type="button" class="delBtn" data-seq="${item['seq']}" value="삭제">	
+					</td>
+				</tr>`;
+		});
+			
+		tag += `</table>`;
+		$('#result').html(tag); 
+		$('.delBtn').on('click', delCustomer); 
+}
+
+// 고객정보 삭제 함수
+function delCustomer() {
+	let seq = $(this).attr('data-seq');
+	
+	if(!confirm("데이터를 삭제하시겠습니까?")) {
+		return;
+	}
+	
+	$.ajax({
+		url: 'delete',
+		method: 'get',
+		data: {"seq": seq}, 
+		success: init
+	});
 }
 
 </script>
@@ -37,6 +116,9 @@ function regist() {
 		</label>
 		<input type="button" id="regist" value="등록">
 	</div>
+	
+	<hr>
+	<div id="result"></div>
 
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th = "http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원전용 게시판</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body>
+    <div class="container">
+    	<div class="logo">
+    		<img th:src="@{/images/logo.png}" alt="logo">
+    		<h2>회원전용 게시판</h2>
+    	</div>
+    </div>
+    
+    <div class="gnb">
+    	<ul>
+			<!-- 로그인 안 한 사용자 -->
+			<th:block>
+				<li><a href="/user/login">로그인</a></li>
+				<li><a href="/user/join">회원가입</a></li>
+			</th:block>
+		
+			<!-- 로그인 한 사용자 -->
+			<th:block>
+				<li><a href="/user/logout">로그아웃</a></li>
+				<li><a href="">개인정보 수정</a></li>
+			</th:block>
+			
+			<!-- 로그인과 관계없는 메뉴 -->
+			<li><a href="/board/boardList">게시판</a></li>
+			<li><a href="">머신러닝</a></li>
+		</ul>
+    </div>
+
+</body>
+
+</html>

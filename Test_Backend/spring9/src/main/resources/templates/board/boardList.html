@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th = "http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 목록</title>
+    <script src="https://kit.fontawesome.com/def97ee41b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+</head>
+
+<body>
+<!-- 로고 -->
+    <div class="container">
+    	<div class="logo">
+    		<a href="/">
+    			<img th:src="@{/images/logo.png}" alt="logo">
+    		</a>
+    		<h2>게시글 목록</h2>
+    	</div>
+    </div>
+   
+   <!-- 전체 글 개수 + 검색창 -->
+   <div class="content">
+   		<div class="top">
+	   	<!-- 전체 글 개수 -->
+	   	<div class="count">
+	   		<p>게시글 개수: 0 </p> 
+	   	</div>
+	   	
+	   	<!-- 검색창 -->
+	   	<div class="search">
+	   		<form action="/board/boardList" method="get" id="searchForm">
+	   			<input type="hidden" name="page" id="requestPage" th:value="${page}">
+	   			<select name="searchItem" id="searchItem">
+	   				<option value="boardTitle"   th:selected="${searchItem == 'boardTitle'}">글제목</option>
+	   				<option value="boardWriter"  th:selected="${searchItem == 'boardWriter'}">작성자</option>
+	   				<option value="boardContent" th:selected="${searchItem == 'boardContent'}">내용</option>
+	   			</select>
+	   			<input type="text" name="searchWord" th:value="${searchWord}">
+	   			<input type="submit" id="searchBtn" class="btn btn-primary" value="검색">
+	   		</form>
+	   	</div> <!-- end. search -->
+   	
+   	</div> <!-- end. top -->
+   	
+   	<div class="head">
+   		<table border="1">
+   			<tr>
+   				<th class="no">일련번호</th>
+   				<th>제목</th>
+   				<th class="writer">작성자</th>
+   				<th class="hitcount">조회수</th>
+   				<th class="create_date">작성일</th>
+   			</tr>
+   			<!-- 반복구간 -->
+   			<tr th:each="board, status : ${list}">
+   				<!-- 요청 페이지마다 일련번호를 계산 -->
+   				<td th:text="${(list.number+1) * list.size - (list.size - status.count)}">1</td>
+   				<td>
+   					<a th:href="@{/board/boardDetail(boardSeq=${board.boardSeq}, searchItem=${searchItem}, searchWord=${searchWord})}" th:text="${board.boardTitle}"></a>
+   					<th:block th:if="${board.originalFilename != null}">
+   					<i class="fa-duotone fa-solid fa-paperclip" attach></i>
+   					</th:block>
+   					
+   				</td>
+   				<td th:text="${board.boardWriter}">홍길동</td>
+   				<td th:text="${board.hitCount}">12</td>
+   				<td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">2025-07-09 14:47</td>
+   			</tr>
+   		</table>
+   	</div> <!-- end. head -->
+   	
+   	<!-- 글쓰기 버튼 -->
+   	<div class="write">
+   		<a href="/board/boardWrite" class="btn btn-primary">글쓰기</a>
+   	</div>
+   	
+   	<!-- 페이징 구간 -->
+   	<nav class="pagination">
+   	<!-- 앞 그룹 -->
+   	<!-- 2번 그룹 이상을 보고 있을 때만 링크가 생겨야 한다. -->
+   	<th:block th:if="${navi.startPageGroup > 1}">
+   		<a class="page-no navi" th:href="|javascript:pageFormSubmit(${navi.startPageGroup - 1})|">
+   			&laquo;
+   		</a>
+   	</th:block>
+   	<!-- 1번 그룹을 보고 있을 때는 링크가 생기면 안 된다. -->
+   	<th:block th:unless="${navi.startPageGroup > 1}">
+   		<span class="page-no navi">
+   			&laquo;
+   		</span>
+   	</th:block>
+	 
+	<!-- 앞 페이지 -->
+	<!-- 2페이지 이상을 보고 있으면 링크 있음 --> 
+	<th:block th:if="${navi.page > 1}">
+		<a class="page-no navi" th:href="|javascript:pageFormSubmit(${navi.page - 1})|">&lsaquo;</a>
+	</th:block>
+	<!-- 1페이지를 보고 있으면 링크 없음 --> 
+		<th:block th:unless="${navi.page > 1}">
+		<span class="page-no navi">&lsaquo;</span>
+	</th:block>
+	
+	<!-- 페이지 번호 출력 : count, page(4) -->
+	<th:block th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+		<!-- 현재 보고 있는 페이지(굵고 링크 없음) 와 count 로 출력한 페이지가 같을 경우 링크가 안 생김 -->
+		<span th:if="${count == navi.page}">
+			<!-- a 태그는 기본적인 기능을 가지고 있으므로 javascript 를 실행하기 전에 링크를 실행한다. -->
+			<b class="page-no current" th:text="${count}"></b>
+		</span>
+		<!-- 현재 페이지와 count 로 출력한 페이지가 다를 경우 링크가 생김 -->
+		<span th:unless="${count == navi.page}">
+			<!-- a 태그는 기본적인 기능을 가지고 있으므로 javascript 를 실행하기 전에 링크를 실행한다. -->
+			<a class="page-no" th:href="|javascript:pageFormSubmit(${count})|" th:text="${count}"></a>
+		</span>
+	</th:block>
+	
+	<!-- 뒷페이지 -->
+	<!-- 마지막 페이지가 아닌 경우 링크 생김 -->
+	<th:block th:if="${(navi.totalPages) > (navi.page)}">
+		<a class="page-no navi" th:href="|javascript:pageFormSubmit(${navi.page+1})|">&rsaquo;</a>
+	</th:block>
+	
+	<!-- 마지막 페이지인 경우 링크 없음 -->
+	<th:block th:unless="${(navi.totalPages) > (navi.page)}">
+		<span class="page-no navi">&rsaquo;</span>
+	</th:block>
+	
+
+	<!-- 뒷 그룹 -->
+	<!-- 다음 그룹이 있을 경우 링크가 생겨야 한다. -->
+	<th:block th:if="${(navi.currentGroup) < (navi.totalGroupCount)}">
+   		<a class="page-no navi" th:href="|javascript:pageFormSubmit(${navi.endPageGroup + 1})|">
+   			&raquo;
+   		</a>
+   	</th:block>
+	<!-- 마지막 그룹에 있을 경우 링크가 생기지 않는다. -->
+	<th:block th:unless="${(navi.currentGroup) < (navi.totalGroupCount)}">
+   		<span class="page-no navi">
+   			&raquo;
+   		</span>
+   	</th:block>
+
+   	</nav> <!-- end. pagination -->
+   	
+   </div> <!-- end. content -->
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+   <script>
+   		function pageFormSubmit(page) {
+   			console.log("요청 페이지: " + page);
+   			// 페이징을 위한 폼을 사용해서 데이터 처리 (id: requestPage)
+   			$("#requestPage").val(page);
+   			$("#searchForm").submit();  // 폼 태그의 값을 서버로 전송
+   		}
+   </script>
+</body>
+
+</html>

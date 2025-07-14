@@ -1,0 +1,58 @@
+/************ detail.css *************
+게시글 자세히 보기 화면에 적용되는 CSS 
+**************************************/
+@charset "UTF-8";
+
+@import "main.css";
+
+/******** 댓글 수정버튼 감추기 *********/
+input#updateBtn {
+	display: none;
+}
+
+div.content {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+/********* 글 자세히 보기 화면 *********/
+pre {
+	width: 750px;
+	height: 200px;
+}
+
+div.content td {
+	text-align: left;
+	width: 800px;
+}
+
+/************** 댓글 화면 **************/
+div.reply-write {
+	width: 1000px;
+	margin: 20px auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/************* 댓글 입력창 *************/
+div.reply-write input#replyText {
+	width: 900px;
+	display: inline-block;
+	height: 32px;
+}
+
+/************** 댓글 목록 **************/
+div#reply-list {
+	width: 1000px;
+}
+
+/********** 댓글 목록 테이블 ***********/
+tr>td.no,
+tr>td.writer,
+tr>td.date,
+tr>td.btns
+{
+	width: 200px;
+	text-align: center;
+}
