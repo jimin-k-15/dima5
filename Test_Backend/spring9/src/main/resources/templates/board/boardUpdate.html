@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th = "http://thymeleaf.org">
+<html lang="ko" xmlns:th = "http://thymeleaf.org"
+				xmlns:sec = "http://thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -9,20 +10,16 @@
 </head>
 
 <body>
-<!-- 로고 -->
-    <div class="container">
-    	<div class="logo">
-    		<a href="/">
-    			<img th:src="@{/images/logo.png}" alt="logo">
-    		</a>
-    		<h2>게시글 수정</h2>
-    	</div>
-    </div>
+	<!-- 로고(fragment 로 대체) -->
+	<div class="container" th:insert="~{fragment/header(title='게시글 수정')}"></div>
    
  	<!-- 게시글 수정 화면 -->
 	<div class="content">
-		<form action="/board/boardUpdate" method="POST">
+		<form action="/board/boardUpdate" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="boardSeq" th:value="${board.boardSeq}">
+			<input type="hidden" name="boardWriter" th:value="${board.boardWriter}">
+			<input type="hidden" name="searchItem" th:value="${searchItem}">
+			<input type="hidden" name="searchWord" th:value="${searchWord}">
 			<table border="1">
 				<tr>
 					<th>작성자</th>
@@ -51,7 +48,8 @@
 				<tr>
 					<th>첨부파일</th>
 					<td>
-						<input type="file" class="btn"> 
+						<input type="file" class="btn" name="uploadFile">
+						<th:block th:if="${board.originalFilename != null}" th:text="${board.originalFilename}"></th:block> 
 					</td>
 				</tr>
 				<tr>

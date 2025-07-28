@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th = "http://thymeleaf.org"
+				xmlns:sec = "http://thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>붓꽃분석</title>
+    <link rel="stylesheet" th:href="@{/css/write.css}">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script defer th:src="@{/js/predict.js}"></script>
+    <style>
+    	div.flower, div.iris div, div#result {
+    		width: 1000px;
+    		margin: 0 auto;
+    		text-align: center;
+    	}
+    	div.flower img {
+    		width: 200px;
+    	}
+    	div.iris {
+    		width: 1000px;
+    		margin: 0 auto;
+    	}
+    	div.iris>label {
+    		display: inline-block;
+    		width: 220px; 
+    		padding-left: 10px;
+    		margin: 15px;
+    	}
+    	div#result {
+    		color: red; 
+    		font-size: 1.3em;
+    		font-weight: bold;
+    	}
+    </style>
+</head>
+
+<body>
+	<!-- 로고(fragment 로 대체) -->
+	<div class="container" th:insert="~{fragment/header(title='머신러닝 붓꽃분석')}"></div>
+   
+   <!-- 붓꽃 이미지 -->
+   <div class="flower">
+   		<img th:src="@{/images/iris.jpeg}" alt = "붓꽃">
+   </div>
+   
+ 	<!-- 붓꽃 분석 데이터 입력 구간 -->
+	<div class="iris">
+		<label>꽃잎의 너비(petal width): </label>
+			<input type="text" name="petalWidth"  id="petalWidth"  placeholder="꽃잎의 너비">
+		<label>꽃잎의 길이(petal length): </label>
+			<input type="text" name="petalLength" id="petalLength" placeholder="꽃잎의 길이">
+		<label>꽃받침의 너비(sepal width): </label>
+			<input type="text" name="sepalWidth"  id="sepalWidth"  placeholder="꽃받침의 너비">
+		<label>꽃받침의 길이(sepal length): </label>
+			<input type="text" name="sepalLength" id="sepalLength" placeholder="꽃받침의 길이">
+			<br><br>
+			<input type="button" id="predictBtn" value="예측 분석 결과 보기" class="btn btn-primary"> 
+	
+	</div> 	
+	
+	<!-- 붓꽃 분석 데이터 결과 출력 구간 -->
+	<div id="result"></div>
+ 
+</body>
+
+</html>

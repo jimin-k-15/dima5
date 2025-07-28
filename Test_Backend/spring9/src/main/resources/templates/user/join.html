@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <script src="https://kit.fontawesome.com/def97ee41b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/join.js"></script>
+
+</head>
+
+<body>
+	<!-- 회원가입 -->
+	<div class="login_content">
+	  <form action="/user/joinProc" method="POST" class="login_create none" id="login-up">
+	      <h1 class="login_title">
+	          <a href="/">
+	              <img th:src="@{/images/logo.png}" style="width:30px;">&nbsp;
+	        </a>
+	        <span>회원가입</span>
+	    </h1>
+	    
+	    <div class="login_box">
+	    	<i class="fa-solid fa-fingerprint login_icon"></i>
+	        <input type="text" id="userId" name="userId" placeholder="User ID" class="login_input">
+	    </div>
+	    <div id="confirmId"></div>
+	
+	    <div class="login_box">
+	        <i class="fa-solid fa-at login_icon"></i>
+	        <input type="text" name="email" placeholder="Email" class="login_input">
+	    </div>
+	
+	    <div class="login_box">
+	        <i class="fa-solid fa-lock login_icon"></i>
+	        <input type="text" name="userPwd" placeholder="Password" class="login_input">
+	    </div>
+	    
+	    <div class="login_box">
+	        <i class="fa-solid fa-user login_icon"></i>
+	        <input type="text" name="userName" placeholder="Name" class="login_input">
+	    </div>
+	
+	    <input type="button" id="joinBtn" class="login_button login_register" value="회원가입">
+	
+	    <div>
+	        <span class="login_account login_account-account">계정이 있으신가요?</span>
+	        <span class="login_signup login_signup-signup" id="sign-in">로그인</span>
+	    </div>
+	    
+	    <div class="login_social">
+            <a href="#" class="login_social-icon"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="#" class="login_social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="login_social-icon"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="login_social-icon"><i class="fa-brands fa-github"></i></a>
+        </div>
+	</form>
+	</div>
+</body>
+
+</html>

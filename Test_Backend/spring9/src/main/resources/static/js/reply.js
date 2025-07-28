@@ -23,6 +23,8 @@ function init() {
 // [ {}, {} ] -> 배열 안의 객체 형태 
 function output(resp) {
 	// console.log(resp);	// [ {"writer":"kildong"}, {}, {} ] --> resp[0]["writer"]
+	let loginId = $('#loginId').val(); 		// 로그인한 사람의 아이디
+	
 	let tag = `
 	<table>
 		<tr>
@@ -40,8 +42,11 @@ function output(resp) {
 			<td class='writer'>${item["replyWriter"]}</td>
 			<td class='date'>${item["createDate"].substr(0, 10)}</td>
 			<td class='btns'>
-				<input type="button" value="삭제" class="btn btn-danger delBtn" data-seq="${item['replySeq']}">
-				<input type="button" value="수정" class="btn btn-info updateBtn" data-seq="${item['replySeq']}">
+				<input type="button" value="삭제" class="btn btn-danger delBtn" data-seq="${item['replySeq']}"
+				${item["replyWriter"] == loginId ? '' : 'disabled'}>
+				
+				<input type="button" value="수정" class="btn btn-info updateBtn" data-seq="${item['replySeq']}"
+				${item["replyWriter"] == loginId ? '' : 'disabled'}>
 			</td>
 		</tr>`;
 	});
@@ -67,7 +72,6 @@ function replyDelete() {
 		}
 	});
 }
-
 // 댓글 수정을 위해 조회(select)하기
 function replyUpdate() {
 	let replySeq = $(this).attr('data-seq');	// 댓글번호 읽어옴
@@ -124,7 +128,7 @@ function replyWrite() {
 	}
 	
 	let boardSeq = $("#boardSeq").val();
-	let replyWriter = $("#replyWriter").val();
+	let replyWriter = $("#loginId").val();
 	
 	let sendData = {
 		"boardSeq": boardSeq

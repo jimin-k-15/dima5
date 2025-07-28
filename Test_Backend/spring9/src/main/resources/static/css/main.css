@@ -140,3 +140,17 @@ textarea
 	outline: 1px solid rgb(0, 125, 180);
 	border-radius: 10px;
 }
+
+/****** Fragment (상단 타이틀 처리) *******/
+div#user {
+	position: absolute;
+	width: 500px;
+	right: 0;
+	top: 5px;
+	text-align: right;
+	z-index: 10;
+}
+
+div#user ul, div#user li {
+	padding: 0px;
+}

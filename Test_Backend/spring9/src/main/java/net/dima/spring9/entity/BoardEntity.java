@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Formula;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,6 +58,10 @@ public class BoardEntity {
 	
 	@OneToMany
 	private List<ReplyEntity> entity;
+	
+	// 댓글 갯수 처리
+	@Formula("(SELECT count(1) FROM reply r WHERE board_seq = r.board_seq)")
+	private int replyCount;
 	
 	public static BoardEntity toEntity(BoardDTO boardDTO) {
 		return BoardEntity.builder()

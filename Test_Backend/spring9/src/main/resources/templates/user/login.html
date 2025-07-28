@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://kit.fontawesome.com/def97ee41b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <script defer th:src="@{/js/login.js}"></script>
+</head>
+
+<body>
+	<div class="login_content">
+		<!--   login form -->
+		<form action="/user/loginProc" method="POST" class="login_register"
+			id="login-in">
+			<h1 class="login_title">
+				<a href="/"> <img th:src="@{/images/logo.png}"
+					style="width: 30px;">&nbsp;
+				</a> <span>로그인</span>
+			</h1>
+			<div class="login_box">
+				<i class="fa-solid fa-user login_icon"></i> 
+				<input type="text" name="userId" placeholder="User ID" class="login_input">
+			</div>
+			<div class="login_box">
+				<i class="fa-solid fa-lock login_icon"></i> 
+				<input type="text" name="userPwd" placeholder="Password" class="login_input">
+			</div>
+			<a href="#" class="login_forgot">비밀번호를 잊었나요?? </a> 
+			
+			<!-- 로그인 실패한 경우 나오도록 함 -->
+			<th:block th:if="${error}">
+				<span th:text="${errMessage}" style="font-size: 0.8em; color: red;"></span>
+			</th:block>
+			
+			<input type="submit" class="login_button login_register" value="로그인">
+
+			<div>
+				<span class="login_account login_account-account">계정이 없으세요?</span> 
+				<span class="login_signin login_signin-signup" id="sign-up">회원가입</span>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

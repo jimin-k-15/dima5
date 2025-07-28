@@ -39,19 +39,23 @@ public class BoardDTO {
 				.build();
 	}
 
-	// 생성자 추가 (Paging 을 위해 작성한 코드)
+	
+	// 파일 첨부되었을 때를 위한 추가작업
+	private MultipartFile uploadFile;
+	
+	// 댓글의 갯수
+	private int replyCount;
+	
+	// 생성자 추가 (Paging 을 위해 작성한 코드 + 이 값을 BoardList에 출력함)
 	public BoardDTO(Long boardSeq, String boardWriter, String boardTitle, int hitCount, LocalDateTime createDate,
-			String originalFilename) {
+			String originalFilename, int replyCount) {
 		this.boardSeq = boardSeq;
 		this.boardWriter = boardWriter;
 		this.boardTitle = boardTitle;
 		this.hitCount = hitCount;
 		this.createDate = createDate;
 		this.originalFilename = originalFilename;
+		this.replyCount = replyCount;
 	}
-	
-	// 파일 첨부되었을 때를 위한 추가작업
-	private MultipartFile uploadFile;
-	
 }
 

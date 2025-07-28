@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th = "http://thymeleaf.org">
+<html lang="ko" xmlns:th = "http://thymeleaf.org"
+				xmlns:sec = "http://thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -10,22 +11,15 @@
 </head>
 
 <body>
-<!-- 로고 -->
-    <div class="container">
-    	<div class="logo">
-    		<a href="/">
-    			<img th:src="@{/images/logo.png}" alt="logo">
-    		</a>
-    		<h2>게시글 목록</h2>
-    	</div>
-    </div>
+	<!-- 로고(fragment 로 대체) -->
+	<div class="container" th:insert="~{fragment/header(title='회원 전용 게시판')}"></div>
    
    <!-- 전체 글 개수 + 검색창 -->
    <div class="content">
    		<div class="top">
 	   	<!-- 전체 글 개수 -->
 	   	<div class="count">
-	   		<p>게시글 개수: 0 </p> 
+	   		<p>게시글 개수: <span th:text="${list.totalElements}"></span>개 </p> 
 	   	</div>
 	   	
 	   	<!-- 검색창 -->
@@ -59,8 +53,15 @@
    				<td th:text="${(list.number+1) * list.size - (list.size - status.count)}">1</td>
    				<td>
    					<a th:href="@{/board/boardDetail(boardSeq=${board.boardSeq}, searchItem=${searchItem}, searchWord=${searchWord})}" th:text="${board.boardTitle}"></a>
+   					
+   					<!-- 첨부파일 여부 출력 -->
    					<th:block th:if="${board.originalFilename != null}">
-   					<i class="fa-duotone fa-solid fa-paperclip" attach></i>
+   						<i class="fa-duotone fa-solid fa-paperclip" attach></i>
+   					</th:block>
+   					
+   					<!-- 댓글 갯수 출력 -->
+   					<th:block th:if="${board.replyCount != 0}">
+   						<span style="font-weight: bold; color: darkred;">([[ ${board.replyCount} ]])</span>
    					</th:block>
    					
    				</td>

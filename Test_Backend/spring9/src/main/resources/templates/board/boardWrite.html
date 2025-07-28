@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th = "http://thymeleaf.org">
+<html lang="ko" xmlns:th = "http://thymeleaf.org"
+				xmlns:sec = "http://thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -9,15 +10,8 @@
 </head>
 
 <body>
-<!-- 로고 -->
-    <div class="container">
-    	<div class="logo">
-    		<a href="/">
-    			<img th:src="@{/images/logo.png}" alt="logo">
-    		</a>
-    		<h2>게시글 등록</h2>
-    	</div>
-    </div>
+	<!-- 로고(fragment 로 대체) -->
+	<div class="container" th:insert="~{fragment/header(title='게시글 등록')}"></div>
    
  	<!-- 게시글 등록 화면 -->
 	<div class="content">
@@ -26,7 +20,7 @@
 				<tr>
 					<th>작성자</th>
 					<td><!-- 로그인한 사람의 아이디 -->
-						<input type="text" id="boardWriter" name="boardWriter" value="hong" readonly>
+						<input type="text" id="boardWriter" name="boardWriter" th:value="${#authentication.name}" readonly>
 					</td>
 				</tr>
 				<tr>

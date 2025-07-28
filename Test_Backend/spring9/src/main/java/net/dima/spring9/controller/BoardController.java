@@ -1,7 +1,6 @@
 package net.dima.spring9.controller;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dima.spring9.dto.BoardDTO;
+import net.dima.spring9.dto.LoginUserDetails;
 import net.dima.spring9.service.BoardService;
 import net.dima.spring9.util.PageNavigator;
 
@@ -57,6 +58,7 @@ public class BoardController {
 	 */
 	@GetMapping("/boardList")
 	public String boardList(
+			@AuthenticationPrincipal LoginUserDetails loginUser,
 			@PageableDefault(page = 1) Pageable pageable, 		// 페이징을 도와주는 객체
 			@RequestParam(name="searchItem", defaultValue="boardTitle") String searchItem,
 			@RequestParam(name="searchWord", defaultValue="") String searchWord,
@@ -73,6 +75,11 @@ public class BoardController {
 		int page = pageable.getPageNumber();		// 사용자가 요청한 페이지
 		
 		PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
+		
+		// 로그인을 한 경우
+		if(loginUser != null) {
+			model.addAttribute("loginName", loginUser.getUsername());
+		}
 		
 		model.addAttribute("list", list);
 		model.addAttribute("searchItem", searchItem);
@@ -111,6 +118,7 @@ public class BoardController {
 	 */
 	@GetMapping("/boardDetail")
 	public String boardDetail(
+			@AuthenticationPrincipal LoginUserDetails loginUser,
 			@RequestParam(name="boardSeq") Long boardSeq,
 			@RequestParam(name="searchItem", defaultValue="boardTitle") String searchItem,
 			@RequestParam(name="searchWord", defaultValue="") String searchWord
@@ -119,6 +127,12 @@ public class BoardController {
 		
 		BoardDTO boardDTO = service.selectOne(boardSeq);
 		service.incrementHitcount(boardSeq);
+		
+		// 로그인을 한 경우
+		if(loginUser != null) {
+			model.addAttribute("loginName", loginUser.getUsername());
+		}
+		
 		model.addAttribute("board", boardDTO);
 		model.addAttribute("searchItem", searchItem);
 		model.addAttribute("searchWord", searchWord);
@@ -154,6 +168,7 @@ public class BoardController {
 	 */
 	@GetMapping("/boardUpdate")
 	public String boardUpdate(
+			@AuthenticationPrincipal LoginUserDetails loginUser,
 			@RequestParam(name="boardSeq") Long boardSeq,
 			@RequestParam(name="searchItem", defaultValue = "boardTitle") String searchItem,
 	        @RequestParam(name="searchWord", defaultValue = "") String searchWord,
@@ -161,6 +176,11 @@ public class BoardController {
 			) {
 		
 		BoardDTO boardDTO = service.selectOne(boardSeq);
+		
+		// 로그인을 한 경우
+		if(loginUser != null) {
+			model.addAttribute("loginName", loginUser.getUsername());
+		}
 		
 		model.addAttribute("board", boardDTO);
 		model.addAttribute("searchItem", searchItem);     // 목록으로 돌아갈 때 이전상태 유지하기 위해 들고옴
@@ -181,6 +201,7 @@ public class BoardController {
 	        RedirectAttributes rttr
 	        ) {
 		log.info("{}", boardDTO.toString());
+		log.info("첨부된 파일명: {}", boardDTO.getUploadFile().getOriginalFilename());
 		
 		service.updateBoard(boardDTO);
 		

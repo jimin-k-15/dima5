@@ -1,7 +1,6 @@
 package net.dima.spring9.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -79,8 +79,9 @@ public class BoardService {
 				board.getBoardTitle(),
 				board.getHitCount(),
 				board.getCreateDate(),
-				board.getOriginalFilename()
-		));
+				board.getOriginalFilename(),
+				board.getReplyCount()
+				));
 		
 		// temp.forEach((entity) -> list.add(BoardDTO.toDTO(entity)));
 		
@@ -156,27 +157,74 @@ public class BoardService {
 	 */
 	public void deleteOne(Long boardSeq) {
 		Optional<BoardEntity> temp = repository.findById(boardSeq);
+		if(!temp.isPresent()) return;
 		
-		if(temp.isPresent()) {
-			repository.deleteById(boardSeq);
+		BoardEntity entity = temp.get();
+		String savedFilename = entity.getSavedFilename();
+		
+		log.info("삭제할 파일명: {}", savedFilename);
+		
+		// 글이 삭제되면서 첨부파일도 삭제함
+		if(savedFilename != null) {
+			String fullPath = uploadPath + "/" + savedFilename;
+			FileService.deleteFile(fullPath);
 		}
+		
+		repository.deleteById(boardSeq);
 	}
 
 	/**
-	 * 전달받은 글을 수정함 (@Transactional 꼭 넣기) 
+	 * 1) 전달받은 글을 수정함 (@Transactional 꼭 넣기)
+	 * 2) 첨부파일이 있을 때 처리 
 	 * @param boardDTO
 	 */
 	@Transactional
 	public void updateBoard(BoardDTO boardDTO) {
+		MultipartFile uploadFile = boardDTO.getUploadFile();
+		
+		String originalFilename = null;  // 새롭게 첨부된 파일의 원래 이름
+		String savedFilename = null;  	 // 새롭게 첨부된 파일의 저장 이름
+		String oldSavedFilename = null;  // 기존 업로드된 파일이 있을 때 (DB에서 읽어온 파일)
+		
+		// 첨부파일이 있는 경우
+		// 파일을 저장장치에 저장하고, savedFilename을 구한다. => FileService 클래스
+		if(!uploadFile.isEmpty()) {
+			originalFilename = uploadFile.getOriginalFilename();
+			savedFilename = FileService.saveFile(uploadFile, uploadPath);
+		}
+
 		// 글 번호를 이용해 조회한 후 setting
 		Long boardSeq = boardDTO.getBoardSeq();
 		
+		// DB를 확인하여 기존 첨부된 파일이 있는지 확인
 		Optional<BoardEntity> temp = repository.findById(boardSeq);
 		
 		if(temp.isPresent()) {
 			BoardEntity entity = temp.get();
+			oldSavedFilename = entity.getSavedFilename();
+			
+			// 1) 기본에 업로드된 파일이 있고, 새롭게 업로드된 파일도 있는 경우
+			if(oldSavedFilename != null && !uploadFile.isEmpty()) {
+				//    기존 파일은 삭제
+				String fullPath = uploadPath + "/" + oldSavedFilename;
+				FileService.deleteFile(fullPath);
+				
+				//    새로운 파일을 entity 에 세팅
+				entity.setOriginalFilename(originalFilename);
+				entity.setSavedFilename(savedFilename);
+			}
+			// 2) 기존 파일은 없고 새롭게 업로드된 파일이 있는 경우
+			else if(oldSavedFilename == null && !uploadFile.isEmpty()) {
+				// 기존 파일은 삭제할 게 없음
+				// 새로운 파일을 entity 에 세팅
+				entity.setOriginalFilename(originalFilename);
+				entity.setSavedFilename(savedFilename);
+			}	
+			
+			// 3) 기존 파일도 없고 새롭게 업로드된 파일도 없는 경우 (글만 수정)
 			entity.setBoardTitle(boardDTO.getBoardTitle());
 			entity.setBoardContent(boardDTO.getBoardContent());
+			entity.setUpdateDate(LocalDateTime.now());
 		}
 	}
 }
